@@ -12,7 +12,6 @@ import Grid from '@material-ui/core/Grid';
 import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
 import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
-import SignUp from "../components/SignUp/SignUp";
 
 function Copyright() {
     return (
@@ -120,7 +119,7 @@ export default function SignInSide() {
                 </Link>
                             </Grid>
                             <Grid item>
-                                <Link href={SignUp} variant="body2">
+                                <Link href="#" variant="body2">
                                     {"Don't have an account? Sign Up"}
                                 </Link>
                             </Grid>

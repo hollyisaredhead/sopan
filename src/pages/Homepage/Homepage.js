@@ -3,30 +3,31 @@ import clsx from 'clsx';
 import { makeStyles } from '@material-ui/core/styles';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import Drawer from '@material-ui/core/Drawer';
+import Box from '@material-ui/core/Box';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import List from '@material-ui/core/List';
-import IconButton from '@material-ui/core/IconButton';
 import Typography from '@material-ui/core/Typography';
 import Divider from '@material-ui/core/Divider';
+import IconButton from '@material-ui/core/IconButton';
 import Badge from '@material-ui/core/Badge';
+import Container from '@material-ui/core/Container';
+import Grid from '@material-ui/core/Grid';
+import Paper from '@material-ui/core/Paper';
+import Link from '@material-ui/core/Link';
+import MenuIcon from '@material-ui/icons/Menu';
+import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
+import NotificationsIcon from '@material-ui/icons/Notifications';
+import { mainListItems, secondaryListItems } from '../../components/DashListItems/DashListItems';
+
 import MenuItem from '@material-ui/core/MenuItem';
 import Menu from '@material-ui/core/Menu';
 import AccountCircle from '@material-ui/icons/AccountCircle';
-import NotificationsIcon from '@material-ui/icons/Notifications';
 import MoreIcon from '@material-ui/icons/MoreVert';
 
 import ChatBubbleIcon from '@material-ui/icons/ChatBubble';
 import ChevronRightIcon from '@material-ui/icons/ChevronRight';
 
-import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
-import { mainListItems, secondaryListItems } from '../../components/DashListItems/DashListItems';
-
-// Grid
-import Container from '@material-ui/core/Container';
-import Grid from '@material-ui/core/Grid';
-import Paper from '@material-ui/core/Paper';
-import Box from '@material-ui/core/Box';
 
 
 const drawerWidth = 240;
@@ -48,19 +49,29 @@ const useStyles = makeStyles((theme) => ({
         padding: '0 8px',
         ...theme.mixins.toolbar,
     },
+    appBar: {
+        zIndex: theme.zIndex.drawer + 1,
+        transition: theme.transitions.create(['width', 'margin'], {
+            easing: theme.transitions.easing.sharp,
+            duration: theme.transitions.duration.leavingScreen,
+        }),
+    },
+    appBarShift: {
+        marginLeft: drawerWidth,
+        width: `calc(100% - ${drawerWidth}px)`,
+        transition: theme.transitions.create(['width', 'margin'], {
+            easing: theme.transitions.easing.sharp,
+            duration: theme.transitions.duration.enteringScreen,
+        }),
+    },
     menuButton: {
-        marginRight: theme.spacing(2),
+        marginRight: 36,
     },
     menuButtonHidden: {
         display: 'none',
     },
     title: {
-        textAlign: 'left',
         flexGrow: 1,
-        display: 'none',
-        [theme.breakpoints.up('sm')]: {
-            display: 'block',
-        },
     },
     inputRoot: {
         color: 'inherit',
@@ -95,22 +106,6 @@ const useStyles = makeStyles((theme) => ({
             width: theme.spacing(9),
         },
     },
-    appBar: {
-        backgroundColor: "darkorange",
-        zIndex: theme.zIndex.drawer + 1,
-        transition: theme.transitions.create(['width', 'margin'], {
-            easing: theme.transitions.easing.sharp,
-            duration: theme.transitions.duration.leavingScreen,
-        }),
-    },
-    appBarShift: {
-        marginLeft: drawerWidth,
-        width: `calc(100% - ${drawerWidth}px)`,
-        transition: theme.transitions.create(['width', 'margin'], {
-            easing: theme.transitions.easing.sharp,
-            duration: theme.transitions.duration.enteringScreen,
-        }),
-    },
     appBarSpacer: theme.mixins.toolbar,
     content: {
         flexGrow: 1,
@@ -140,19 +135,20 @@ const useStyles = makeStyles((theme) => ({
         flexDirection: 'column',
     },
     fixedHeight: {
-        height: 240,
+        height: 500,
     },
 }));
 
-export default function PrimarySearchAppBar() {
+export default function Dashboard() {
     const classes = useStyles();
+
+    const fixedHeightPaper = clsx(classes.paper, classes.fixedHeight);
+
     const [anchorEl, setAnchorEl] = React.useState(null);
     const [mobileMoreAnchorEl, setMobileMoreAnchorEl] = React.useState(null);
 
     const isMenuOpen = Boolean(anchorEl);
     const isMobileMenuOpen = Boolean(mobileMoreAnchorEl);
-
-    const fixedHeightPaper = clsx(classes.paper, classes.fixedHeight);
 
     const [open, setOpen] = React.useState(true);
     const handleDrawerOpen = () => {
@@ -161,7 +157,6 @@ export default function PrimarySearchAppBar() {
     const handleDrawerClose = () => {
         setOpen(false);
     };
-
     const handleProfileMenuOpen = (event) => {
         setAnchorEl(event.currentTarget);
     };
@@ -179,6 +174,7 @@ export default function PrimarySearchAppBar() {
         setMobileMoreAnchorEl(event.currentTarget);
     };
 
+    // Top right navebar menu items
     const menuId = 'primary-search-account-menu';
     const renderMenu = (
         <Menu
@@ -238,21 +234,20 @@ export default function PrimarySearchAppBar() {
     );
 
     return (
-        <div className={classes.grow}>
+        <div className={classes.root}>
             <CssBaseline />
-            <AppBar position="static" className={clsx(classes.appBar, open && classes.appBarShift)}>
+            <AppBar position="absolute" className={clsx(classes.appBar, open && classes.appBarShift)}>
                 <Toolbar className={classes.toolbar}>
                     <IconButton
                         edge="start"
-                        className={classes.menuButton}
                         color="inherit"
                         aria-label="open drawer"
-                    // onClick={handleDrawerOpen}
-                    // className={clsx(classes.menuButton, open && classes.menuButtonHidden)}
+                        onClick={handleDrawerOpen}
+                        className={clsx(classes.menuButton, open && classes.menuButtonHidden)}
                     >
-                        {/* <MenuIcon /> */}
+                        <MenuIcon />
                     </IconButton>
-                    <Typography className={classes.title} variant="h6" noWrap>
+                    <Typography component="h1" variant="h6" color="inherit" noWrap className={classes.title}>
                         SoPan
           </Typography>
                     <div className={classes.grow} />
@@ -299,46 +294,38 @@ export default function PrimarySearchAppBar() {
                 open={open}
             >
                 <div className={classes.toolbarIcon}>
-                    <IconButton onClick={handleDrawerClose}
-                        className={clsx(classes.ChevronLefIcon, open && classes.ChevronLeftIconHidden)} >
+                    <IconButton onClick={handleDrawerClose}>
                         <ChevronLeftIcon />
-                    </IconButton>
-                    <IconButton onClick={handleDrawerOpen}
-                        className={clsx(classes.ChevronRightIcon, open && classes.ChevronRightIconHidden)} >
-                        <ChevronRightIcon />
                     </IconButton>
                 </div>
                 <Divider />
                 <List>{mainListItems}</List>
                 <Divider />
                 <List>{secondaryListItems}</List>
-                <Divider />
             </Drawer>
             <main className={classes.content}>
                 <div className={classes.appBarSpacer} />
                 <Container maxWidth="lg" className={classes.container}>
-                    <Grid container spacing={3}>
+                    <Grid container spacing={6}>
                         {/* Chart */}
                         <Grid item xs={12} md={8} lg={9}>
                             <Paper className={fixedHeightPaper}>
-
+                                Video
                             </Paper>
                         </Grid>
                         {/* Recent Deposits */}
                         <Grid item xs={12} md={4} lg={3}>
                             <Paper className={fixedHeightPaper}>
-
+                                Chat
                             </Paper>
                         </Grid>
                         {/* Recent Orders */}
                         <Grid item xs={12}>
                             <Paper className={classes.paper}>
-
+                                Group and Video Control
                             </Paper>
                         </Grid>
                     </Grid>
-                    <Box pt={4}>
-                    </Box>
                 </Container>
             </main>
             <main className={classes.content}>

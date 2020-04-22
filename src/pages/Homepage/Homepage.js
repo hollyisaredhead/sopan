@@ -27,7 +27,7 @@ import MoreIcon from '@material-ui/icons/MoreVert';
 
 import ChatBubbleIcon from '@material-ui/icons/ChatBubble';
 import ChevronRightIcon from '@material-ui/icons/ChevronRight';
-import { orange } from '@material-ui/core/colors';
+import { Avatar } from '@material-ui/core';
 
 
 
@@ -41,7 +41,7 @@ const useStyles = makeStyles((theme) => ({
         display: 'flex',
     },
     toolbar: {
-       paddingRight: 24, // keep right padding when drawer closed
+        paddingRight: 24, // keep right padding when drawer closed
     },
     toolbarIcon: {
         display: 'flex',
@@ -51,11 +51,11 @@ const useStyles = makeStyles((theme) => ({
         ...theme.mixins.toolbar,
     },
     appBar: {
+        backgroundColor: "darkorange",
         zIndex: theme.zIndex.drawer + 1,
         transition: theme.transitions.create(['width', 'margin'], {
             easing: theme.transitions.easing.sharp,
             duration: theme.transitions.duration.leavingScreen,
-            color: 'orange',
         }),
     },
     appBarShift: {
@@ -140,7 +140,7 @@ const useStyles = makeStyles((theme) => ({
     fixedHeight: {
         height: 500,
     },
-  
+
 }));
 
 export default function Dashboard() {
@@ -230,7 +230,7 @@ export default function Dashboard() {
                     aria-haspopup="true"
                     color="inherit"
                 >
-                    <AccountCircle />
+                    <Avatar />
                 </IconButton>
                 <p>Profile</p>
             </MenuItem>
@@ -274,7 +274,7 @@ export default function Dashboard() {
                             onClick={handleProfileMenuOpen}
                             color="inherit"
                         >
-                            <AccountCircle />
+                            <Avatar />
                         </IconButton>
                     </div>
                     <div className={classes.sectionMobile}>

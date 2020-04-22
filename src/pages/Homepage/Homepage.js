@@ -27,6 +27,7 @@ import MoreIcon from '@material-ui/icons/MoreVert';
 
 import ChatBubbleIcon from '@material-ui/icons/ChatBubble';
 import ChevronRightIcon from '@material-ui/icons/ChevronRight';
+import { orange } from '@material-ui/core/colors';
 
 
 
@@ -40,7 +41,7 @@ const useStyles = makeStyles((theme) => ({
         display: 'flex',
     },
     toolbar: {
-        paddingRight: 24, // keep right padding when drawer closed
+       paddingRight: 24, // keep right padding when drawer closed
     },
     toolbarIcon: {
         display: 'flex',
@@ -54,6 +55,7 @@ const useStyles = makeStyles((theme) => ({
         transition: theme.transitions.create(['width', 'margin'], {
             easing: theme.transitions.easing.sharp,
             duration: theme.transitions.duration.leavingScreen,
+            color: 'orange',
         }),
     },
     appBarShift: {
@@ -129,14 +131,16 @@ const useStyles = makeStyles((theme) => ({
         paddingBottom: theme.spacing(4),
     },
     paper: {
-        padding: theme.spacing(2),
+        padding: theme.spacing(13),
         display: 'flex',
         overflow: 'auto',
+        width: 'auto',
         flexDirection: 'column',
     },
     fixedHeight: {
         height: 500,
     },
+  
 }));
 
 export default function Dashboard() {

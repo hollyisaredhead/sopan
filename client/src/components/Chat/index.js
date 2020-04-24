@@ -1,169 +1,47 @@
 import React from 'react';
-import './style.css'
-
+import "./style.css";
 
 class Chat extends React.Component {
 
     componentDidMount = () => {
-        const ScaleDrone = window.ScaleDrone;
+        var socket = window.io();
+        const chatForm = document.getElementById('chat-form');
+        const message = document.getElementById('m');
+        const messageContainer = document.getElementById('message-container');
 
-        const CHANNEL_ID = process.env.REACT_APP_SCALEDRONE_ROOM;
-        const drone = new ScaleDrone(CHANNEL_ID, {
-            data: { // Will be sent out as clientData via events
-                name: getRandomName(),
-                color: getRandomColor(),
-            },
-        });
+        chatForm.addEventListener("submit", sendMessage);
 
-        function getRandomName() {
-            const adjs = ["autumn", "hidden", "bitter", "misty", "silent", "empty", "dry", "dark", "summer", "icy", "delicate", "quiet", "white", "cool", "spring", "winter", "patient", "twilight", "dawn", "crimson", "wispy", "weathered", "blue", "billowing", "broken", "cold", "damp", "falling", "frosty", "green", "long", "late", "lingering", "bold", "little", "morning", "muddy", "old", "red", "rough", "still", "small", "sparkling", "throbbing", "shy", "wandering", "withered", "wild", "black", "young", "holy", "solitary", "fragrant", "aged", "snowy", "proud", "floral", "restless", "divine", "polished", "ancient", "purple", "lively", "nameless"];
-            const nouns = ["waterfall", "river", "breeze", "moon", "rain", "wind", "sea", "morning", "snow", "lake", "sunset", "pine", "shadow", "leaf", "dawn", "glitter", "forest", "hill", "cloud", "meadow", "sun", "glade", "bird", "brook", "butterfly", "bush", "dew", "dust", "field", "fire", "flower", "firefly", "feather", "grass", "haze", "mountain", "night", "pond", "darkness", "snowflake", "silence", "sound", "sky", "shape", "surf", "thunder", "violet", "water", "wildflower", "wave", "water", "resonance", "sun", "wood", "dream", "cherry", "tree", "fog", "frost", "voice", "paper", "frog", "smoke", "star"];
-            return (
-                adjs[Math.floor(Math.random() * adjs.length)] +
-                "_" +
-                nouns[Math.floor(Math.random() * nouns.length)]
-            );
+        function sendMessage(e) {
+            e.preventDefault();
+            socket.emit('chat message', message.value);
+            message.value = '';
+            return false;
         }
 
-        function getRandomColor() {
-            return '#' + Math.floor(Math.random() * 0xFFFFFF).toString(16);
-        }
+        socket.on('chat message', function (msg) {
+            let newMessage = document.createElement("li");
+            newMessage.innerHTML = msg;
+            document.getElementById("messages").appendChild(newMessage);
+            window.scrollTo(0, document.body.scrollHeight)
+            messageContainer.scrollTop = messageContainer.scrollHeight;
 
-        let members = [];
-
-        drone.on('open', error => {
-            if (error) {
-                return console.error(error);
-            }
-            console.log('Successfully connected to Scaledrone');
-
-            const room = drone.subscribe('observable-room');
-            room.on('open', error => {
-                if (error) {
-                    return console.error(error);
-                }
-                console.log('Successfully joined room');
-            });
-
-
-            // List of currently online members, emitted once
-            room.on('members', m => {
-                members = m;
-                updateMembersDOM()
-            });
-
-            // User joined the room
-            room.on('member_join', member => {
-                members.push(member);
-                updateMembersDOM()
-            });
-
-            // User left the room
-            room.on('member_leave', ({ id }) => {
-                const index = members.findIndex(member => member.id === id);
-                members.splice(index, 1);
-                updateMembersDOM()
-            });
-
-            // Add this after 'member_leave' event
-            room.on('data', (text, member) => {
-                if (member) {
-                    addMessageToListDOM(text, member)
-                } else {
-                    // Message is from server
-                }
-            });
-        });
-
-        const DOM = {
-            membersCount: document.querySelector('.members-count'),
-            membersList: document.querySelector('.members-list'),
-            messages: document.querySelector('.messages'),
-            input: document.querySelector('.message-form__input'),
-            form: document.querySelector('.message-form'),
-        };
-
-        console.log(DOM)
-
-        if (DOM.form) {
-            DOM.form.addEventListener('submit', sendMessage);
-        }
-
-
-        function sendMessage() {
-            if (DOM.input) {
-                const value = DOM.input.value;
-                if (value === '') {
-                    return;
-                }
-                DOM.input.value = '';
-                drone.publish({
-                    room: 'observable-room',
-                    message: value,
-                });
-            }
-
-        }
-
-        function createMemberElement(member) {
-            const { name, color } = member.clientData;
-            const el = document.createElement('div');
-            el.appendChild(document.createTextNode(name));
-            el.className = 'member';
-            el.style.color = color;
-            return el;
-        }
-
-        function updateMembersDOM() {
-            if (DOM.membersCount && DOM.membersList) {
-                DOM.membersCount.innerText = `${members.length} users in room:`;
-                DOM.membersList.innerHTML = '';
-                members.forEach(member =>
-                    DOM.membersList.appendChild(createMemberElement(member))
-                );
-            }
-
-        }
-
-        function createMessageElement(text, member) {
-            const el = document.createElement('div');
-            el.appendChild(createMemberElement(member));
-            el.appendChild(document.createTextNode(text));
-            el.className = 'message';
-            return el;
-        }
-
-        function addMessageToListDOM(text, member) {
-            const el = DOM.messages;
-            const wasTop = el.scrollTop === el.scrollHeight - el.clientHeight;
-            el.appendChild(createMessageElement(text, member));
-            if (wasTop) {
-                el.scrollTop = el.scrollHeight - el.clientHeight;
-            }
-        }
-
+        })
     }
 
 
 
-    handleSubmit(e) {
-        e.preventDefault();
-        return false;
-    }
 
     render() {
         return (
             <div>
-                <div className="members-count" > -</div >
-                <div className="members-list">-</div>
-                <div className="messages"></div>
-                <form className="message-form" onSubmit={this.handleSubmit}>
-                    <input className="message-form__input" placeholder="Type a message.." type="text" />
-                    <input className="message-form__button" value="Send" type="submit" />
+                <div id="message-container">
+                    <ul id="messages"></ul>
+                </div>
+                <form id="chat-form" action="">
+                    <input id="m" autoComplete="off" /><button id="send">Send</button>
                 </form>
-            </div >
-        )
-
+            </div>
+        );
     }
 
 }

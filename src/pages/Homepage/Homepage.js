@@ -138,15 +138,19 @@ const useStyles = makeStyles((theme) => ({
         flexDirection: 'column',
     },
     fixedHeight: {
-        height: 500,
+        height: 300,
     },
+    // fixedWidth: {
+    //     width: 300,
+    // }
 
 }));
 
 export default function Dashboard() {
     const classes = useStyles();
 
-    const fixedHeightPaper = clsx(classes.paper, classes.fixedHeight);
+    // Controls css for 
+    const fixedSizingPaper = clsx(classes.paper, classes.fixedHeight, classes.fixedWidth);
 
     const [anchorEl, setAnchorEl] = React.useState(null);
     const [mobileMoreAnchorEl, setMobileMoreAnchorEl] = React.useState(null);
@@ -312,23 +316,23 @@ export default function Dashboard() {
                 <Container maxWidth="lg" className={classes.container}>
                     <Grid container spacing={6}>
                         {/* Chart */}
-                        <Grid item xs={12} md={8} lg={9}>
-                            <Paper className={fixedHeightPaper}>
-                                Video
+                        <Grid item xs={6} md={6} lg={6}>
+                            <Paper className={fixedSizingPaper}>
+                                Host
                             </Paper>
                         </Grid>
                         {/* Recent Deposits */}
-                        <Grid item xs={12} md={4} lg={3}>
-                            <Paper className={fixedHeightPaper}>
-                                Chat
+                        <Grid item xs={6} md={6} lg={6}>
+                            <Paper className={fixedSizingPaper}>
+                                Join
                             </Paper>
                         </Grid>
                         {/* Recent Orders */}
-                        <Grid item xs={12}>
+                        {/* <Grid item xs={9}>
                             <Paper className={classes.paper}>
                                 Group and Video Control
                             </Paper>
-                        </Grid>
+                        </Grid> */}
                     </Grid>
                 </Container>
             </main>

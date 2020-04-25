@@ -3,7 +3,8 @@ import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import LogIn from "./pages/Login/Login";
 import SignUp from "./pages/SignUp/SignUp";
 import './App.css';
-import Chat from "./pages/Homepage/Homepage";
+import Chat from "./pages/Rooms/Homepage/Homepage";
+import ViewingRoom from "./pages/Rooms/ViewingRoom/ViewingRoom";
 
 function App() {
 
@@ -18,7 +19,10 @@ function App() {
             <SignUp />
           </Route>
           <Route exact path={["/homepage"]}>
-            <Chat/>
+            <Chat />
+          </Route>
+          <Route exact path={["/viewingroom"]}>
+            <ViewingRoom />
           </Route>
         </Switch>
       </div>

@@ -11,6 +11,9 @@ import FullscreenExitIcon from '@material-ui/icons/FullscreenExit';
 
 import ChatInput from '../../components/Chat/ChatInput/ChatInput';
 import ChatMessage from '../../components/Chat/ChatMessage/ChatMessage';
+import ChatHeader from '../../components/Chat/ChatHeader/ChatHeader';
+
+import GroupAvatars from '../../components/Avatar/AvatarGroup';
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -65,13 +68,18 @@ export default function RoomLayout() {
                                     </Box>
                                 </div>
                             </Grid>
-                            <Grid id="groupInRoom">Who is in the Room</Grid>
+                            <Grid id="groupInRoom">Who is in the Room
+                            <Box >
+                                    <GroupAvatars />
+                                </Box>
+                            </Grid>
                         </Paper>
                     </Grid>
                 </Grid>
                 <Grid id="chat-container" item xs={2}>
-                    <Paper className={(classes.paper, classes.chatHeight)}>Chat
-                    <ChatMessage />
+                    <Paper className={(classes.paper, classes.chatHeight)}>
+                        <ChatHeader />
+                        <ChatMessage />
                     </Paper>
                     <Grid id="chatText-container">
                         <Paper className={(classes.paper, classes.chatTextHeight)}>

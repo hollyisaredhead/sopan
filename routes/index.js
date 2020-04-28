@@ -1,15 +1,10 @@
-const express = require('express');
-const router = express.Router();
-const { ensureAuthenticated, forwardAuthenticated } = require('../config/auth');
+const path = require("path");
 
-// Welcome Page
-router.get('/', forwardAuthenticated, (req, res) => res.render('welcome'));
+module.exports = (app, io) => {
+    app.get('/', (req, res) => {
+        res.sendFile(path.join(__dirname + '/build/index.html'));
+    });
 
-// chat
-router.get('/FILLTHISIN', ensureAuthenticated, (req, res) =>
-  res.render('dashboard', {
-    user: req.user
-  })
-);
-
-module.exports = router;
+    require("./api/apiRoutes.js")(app);
+    require("./io/ioRoutes.js")(io);
+}

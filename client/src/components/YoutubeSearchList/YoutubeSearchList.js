@@ -1,12 +1,17 @@
 import React from 'react';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemText from '@material-ui/core/ListItemText';
+import './style.css';
 
 
 class YoutubeSearchList extends React.Component {
     render() {
         return (
             <div>
+                <form id="youtube" onSubmit={this.props.handleSubmit}>
+                    <input id="search-query"></input>
+                    <button id="search">Search</button>
+                </form>
                 <div id="search-results-container">
                     <ul id="search-results">
                         {this.props.results.map(vid => (
@@ -17,10 +22,6 @@ class YoutubeSearchList extends React.Component {
                         ))}
                     </ul>
                 </div>
-                <form id="youtube" onSubmit={this.props.handleSubmit}>
-                    <input id="search-query"></input>
-                    <button id="search">Search</button>
-                </form>
             </div >
 
         );

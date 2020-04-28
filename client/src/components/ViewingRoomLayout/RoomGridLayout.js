@@ -20,6 +20,7 @@ import VideoSearchList from '../../components/YoutubeSearchList/YoutubeSearchLis
 
 import GroupAvatars from '../../components/Avatar/AvatarGroup';
 import YoutubeSearchList from '../../components/YoutubeSearchList/YoutubeSearchList';
+import { Divider } from '@material-ui/core';
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -33,11 +34,14 @@ const useStyles = makeStyles((theme) => ({
     videoHeight: {
         height: 688
     },
+    videoStyling: {
+        overflow: "auto"
+    },
     videoControlHeight: {
         height: 200
     },
     chatHeight: {
-        height: 625
+        height: 688
     },
     chatTextarea: {
         width: 100
@@ -52,57 +56,46 @@ export default function RoomLayout() {
 
     return (
         <div className={classes.root}>
-            <Grid id="top-row" height="100%" container spacing={0}>
-                <Grid id="video" height="80%" item xs={10}>
-                    <Paper className={(classes.paper, classes.videoHeight)}>Video
-                    <Container maxWidth="lg">
-                            <Grid>
-                                <Grid>This is where the main video will go
-                                    <Video />
-                                </Grid>
-                                <Grid>Video search results
-                                    
-                                </Grid>
-                            </Grid>
+            <Grid id="top-row" container spacing={0}>
 
-                        </Container>
-                    </Paper>
-                    <Grid id="video-control">
-                        <Paper className={(classes.paper, classes.videoControlHeight)}>
-                            <Grid height="20%" id="volume-screen">Volume and fullscreen controls
-                            <div style={{ width: '100%' }}>
-                                    <Box display="flex" p={1} bgcolor="background.paper">
-                                        <Box p={1} flexGrow={1} >
-                                            <VolumeSlider />
-                                        </Box>
-                                        <Box p={1} >
-                                            <FullscreenIcon />
-                                        </Box>
-                                        <Box p={1} >
-                                            <FullscreenExitIcon />
-                                        </Box>
-                                    </Box>
-                                </div>
-                            </Grid>
-                            <Grid id="groupInRoom">Who is in the Room
-                            <Box >
-                                    <GroupAvatars />
-                                </Box>
-                            </Grid>
-                        </Paper>
-                    </Grid>
-                </Grid>
-                <Grid id="chat-container" item xs={2}>
+                <Video />
+
+
+                <Grid id="chat-container" container item xs={2}>
                     <Paper className={(classes.paper, classes.chatHeight)}>
                         <ChatHeader />
                         <ChatMessage />
+
+                        <Divider />
+                        <ChatInput />
                     </Paper>
-                    <Grid id="chatText-container">
-                        <Paper className={(classes.paper, classes.chatTextHeight)}>
-                            <ChatInput />
-                        </Paper>
-                    </Grid>
                 </Grid>
+
+                <Grid id="video-control" xs={12}>
+                    <Paper className={(classes.paper, classes.videoControlHeight)}>
+                        <Grid id="volume-screen">Volume and fullscreen controls
+                            <div style={{ width: '100%' }}>
+                                <Box display="flex" p={1} bgcolor="background.paper">
+                                    <Box p={1} flexGrow={1} >
+                                        <VolumeSlider />
+                                    </Box>
+                                    <Box p={1} >
+                                        <FullscreenIcon />
+                                    </Box>
+                                    <Box p={1} >
+                                        <FullscreenExitIcon />
+                                    </Box>
+                                </Box>
+                            </div>
+                        </Grid>
+                        <Grid id="groupInRoom">Who is in the Room
+                            <Box >
+                                <GroupAvatars />
+                            </Box>
+                        </Grid>
+                    </Paper>
+                </Grid>
+
             </Grid>
         </div >
     );

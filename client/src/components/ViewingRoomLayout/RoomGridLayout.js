@@ -3,6 +3,8 @@ import { makeStyles } from '@material-ui/core/styles';
 import Paper from '@material-ui/core/Paper';
 import Grid from '@material-ui/core/Grid';
 import Box from '@material-ui/core/Box';
+import Container from '@material-ui/core/Container';
+
 
 import VolumeSlider from '../../components/Volume/Volume';
 import FullscreenIcon from '@material-ui/icons/Fullscreen';
@@ -13,7 +15,11 @@ import ChatInput from '../../components/Chat/ChatInput/ChatInput';
 import ChatMessage from '../../components/Chat/ChatMessage/ChatMessage';
 import ChatHeader from '../../components/Chat/ChatHeader/ChatHeader';
 
+import Video from '../../components/Video/Video';
+import VideoSearchList from '../../components/YoutubeSearchList/YoutubeSearchList';
+
 import GroupAvatars from '../../components/Avatar/AvatarGroup';
+import YoutubeSearchList from '../../components/YoutubeSearchList/YoutubeSearchList';
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -49,7 +55,17 @@ export default function RoomLayout() {
             <Grid id="top-row" height="100%" container spacing={0}>
                 <Grid id="video" height="80%" item xs={10}>
                     <Paper className={(classes.paper, classes.videoHeight)}>Video
-                        <Grid>This is where the main video will go</Grid>
+                    <Container maxWidth="lg">
+                            <Grid>
+                                <Grid>This is where the main video will go
+                                    <Video />
+                                </Grid>
+                                <Grid>Video search results
+                                    
+                                </Grid>
+                            </Grid>
+
+                        </Container>
                     </Paper>
                     <Grid id="video-control">
                         <Paper className={(classes.paper, classes.videoControlHeight)}>
@@ -88,6 +104,6 @@ export default function RoomLayout() {
                     </Grid>
                 </Grid>
             </Grid>
-        </div>
+        </div >
     );
 }

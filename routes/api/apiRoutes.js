@@ -1,4 +1,7 @@
 const axios = require("axios");
+const router = require("express").Router();
+const userRoutes = require("./user");
+const userController = require("../../controllers/userController");
 
 module.exports = (app) => {
     app.get('/api/youtube/:query', (req, res) => {
@@ -7,3 +10,17 @@ module.exports = (app) => {
             .catch(err => console.log(err));
     });
 }
+
+router.use("/user", userRoutes);
+
+router.route("/")
+  .get(userController.findAll)
+  .post(userController.create);
+
+// Matches with "/api/user/:id"
+router
+  .route("/:id")
+  .get(userController.findById)
+  
+  
+module.exports = router;

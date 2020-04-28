@@ -25,7 +25,7 @@ const useStyles = makeStyles((theme) => ({
         color: theme.palette.text.secondary,
     },
     videoHeight: {
-        height: 500
+        height: 688
     },
     videoControlHeight: {
         height: 200
@@ -46,14 +46,14 @@ export default function RoomLayout() {
 
     return (
         <div className={classes.root}>
-            <Grid id="top-row" container spacing={0}>
-                <Grid id="video" item xs={10}>
+            <Grid id="top-row" height="100%" container spacing={0}>
+                <Grid id="video" height="80%" item xs={10}>
                     <Paper className={(classes.paper, classes.videoHeight)}>Video
                         <Grid>This is where the main video will go</Grid>
                     </Paper>
                     <Grid id="video-control">
                         <Paper className={(classes.paper, classes.videoControlHeight)}>
-                            <Grid id="volume-screen">Volume and fullscreen controls
+                            <Grid height="20%" id="volume-screen">Volume and fullscreen controls
                             <div style={{ width: '100%' }}>
                                     <Box display="flex" p={1} bgcolor="background.paper">
                                         <Box p={1} flexGrow={1} >

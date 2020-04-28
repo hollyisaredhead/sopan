@@ -1,7 +1,6 @@
 import React from 'react';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemText from '@material-ui/core/ListItemText';
-import "./style.css"
 
 
 class YoutubeSearchList extends React.Component {

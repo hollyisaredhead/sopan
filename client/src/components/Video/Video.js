@@ -2,6 +2,35 @@ import React from "react";
 import API from "../../utils/API";
 import YoutubeSearchList from "../YoutubeSearchList/YoutubeSearchList.js";
 
+import CardHeader from '@material-ui/core/CardHeader';
+
+import Paper from '@material-ui/core/Paper';
+import Grid from '@material-ui/core/Grid';
+import { withStyles } from '@material-ui/core/styles';
+
+const styles = (theme) => ({
+    root: {
+        flexGrow: 1,
+    },
+    paper: {
+        padding: theme.spacing(2),
+        textAlign: 'center',
+        color: theme.palette.text.secondary,
+    },
+    videoStyling: {
+        paddingTop: 25,
+        height: 660,
+        overflow: "auto"
+    },
+    videoSearch: {
+        height: 685,
+        overflow: "auto"
+    },
+    videoControlHeight: {
+        height: 200
+    },
+});
+
 class Video extends React.Component {
 
     state = {
@@ -39,17 +68,28 @@ class Video extends React.Component {
 
 
     render() {
+        const { classes } = this.props;
         return (
-            <div>
-                <iframe title="vid" allow="autoplay; fullscreen" id="youtube" width="560" height="315"></iframe>
-
-                <YoutubeSearchList
-                    handleSubmit={this.handleSubmit}
-                    chooseVideo={this.chooseVideo}
-                    results={this.state.results} />
-            </div>
+            <Grid id="video" item xs={10} container>
+                <Grid item xs={9} overflow="auto">
+                    <Paper className={(classes.paper, classes.videoStyling)}>
+                        <iframe title="vid" allow="autoplay; fullscreen" id="youtube" width="95%" height="95%"></iframe>
+                    </Paper>
+                </Grid>
+                <Grid item xs={3} id="vidSearch">
+                    <Paper className={(classes.paper, classes.videoStyling)}>
+                        <CardHeader
+                            subheader="Search"
+                        />
+                        <YoutubeSearchList
+                            handleSubmit={this.handleSubmit}
+                            chooseVideo={this.chooseVideo}
+                            results={this.state.results} />
+                    </Paper>
+                </Grid>
+            </Grid>
         )
     }
 }
 
-export default Video;
+export default withStyles(styles)(Video);

@@ -2,6 +2,8 @@ import React from "react";
 import API from "../../utils/API";
 import YoutubeSearchList from "../YoutubeSearchList/YoutubeSearchList.js";
 
+import CardHeader from '@material-ui/core/CardHeader';
+
 import Paper from '@material-ui/core/Paper';
 import Grid from '@material-ui/core/Grid';
 import { withStyles } from '@material-ui/core/styles';
@@ -16,21 +18,16 @@ const styles = (theme) => ({
         color: theme.palette.text.secondary,
     },
     videoStyling: {
-        padding: 10,
-        height: 688,
+        paddingTop: 25,
+        height: 660,
+        overflow: "auto"
+    },
+    videoSearch: {
+        height: 685,
         overflow: "auto"
     },
     videoControlHeight: {
         height: 200
-    },
-    chatHeight: {
-        height: 688
-    },
-    chatTextarea: {
-        width: 100
-    },
-    chatTextHeight: {
-        height: 75
     },
 });
 
@@ -80,8 +77,11 @@ class Video extends React.Component {
                     </Paper>
                 </Grid>
                 <Grid item xs={3} id="vidSearch">
-                    <Paper className={(classes.paper, classes.videoStyling)}>Search result
-                    <YoutubeSearchList
+                    <Paper className={(classes.paper, classes.videoStyling)}>
+                        <CardHeader
+                            subheader="Search"
+                        />
+                        <YoutubeSearchList
                             handleSubmit={this.handleSubmit}
                             chooseVideo={this.chooseVideo}
                             results={this.state.results} />

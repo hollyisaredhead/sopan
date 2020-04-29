@@ -15,13 +15,9 @@ if (process.env.NODE_ENV === "production") {
     app.use(express.static("client/build"));
 }
 
-app.get('/', (req, res) => {
-    res.sendFile(path.join(__dirname + '/build/index.html'));
-});
-
 require("./routes")(app, io);
 
-mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost/userlist");
+mongoose.connect(process.env.MONGODB_URI);
 
 http.listen(PORT, function () {
     console.log('listening on *:' + PORT);

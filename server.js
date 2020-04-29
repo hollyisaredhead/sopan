@@ -17,7 +17,7 @@ if (process.env.NODE_ENV === "production") {
 
 require("./routes")(app, io);
 
-mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost/userlist");
+mongoose.connect(process.env.MONGODB_URI);
 
 http.listen(PORT, function () {
     console.log('listening on *:' + PORT);

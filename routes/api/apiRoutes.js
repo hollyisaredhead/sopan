@@ -1,4 +1,5 @@
 const axios = require("axios");
+const router = require("express").Router();
 const userController = require("../../controllers/userController");
 
 module.exports = (app) => {
@@ -28,3 +29,5 @@ module.exports = (app) => {
 //   .route("/:id")
 //   .get(userController.findById)
 
+
+// module.exports = router;

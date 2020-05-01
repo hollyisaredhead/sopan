@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from "react";
 import Avatar from '@material-ui/core/Avatar';
 import Button from '@material-ui/core/Button';
 import CssBaseline from '@material-ui/core/CssBaseline';
@@ -10,6 +10,7 @@ import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
 import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
+import API from "../../utils/API";
 
 function Copyright() {
     return (
@@ -45,10 +46,38 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 export default function SignUp() {
+    const [userLastName, setUserLastName] = useState();
+    const [userFirstName, setUserFirstName] = useState();
+    const [userUsername, setUsername] = useState();
+    const [userEmail, setUserEmail] = useState();
+    const [userPassword, setUserPassword] = useState();
+   
+  
     const classes = useStyles();
-
+  
     const handleSubmit = (event) => {
-        event.preventDefault();
+      event.preventDefault();
+  
+      console.log(
+        "Form Values",
+        userFirstName,
+        userLastName,
+        userUsername,
+        userEmail,
+        userPassword
+        
+      );
+  
+      API.createUser({
+        first: userFirstName,
+        last: userLastName,
+        username: userUsername,
+        email: userEmail,
+        password: userPassword
+        
+      })
+        .then(console.log("saved user"))
+        .catch((err) => console.log(err));
     };
 
     return (
@@ -73,6 +102,7 @@ export default function SignUp() {
                                 id="firstName"
                                 label="First Name"
                                 autoFocus
+                                onChange={(e) => setUserFirstName(e.target.value)}
                             />
                         </Grid>
                         <Grid item xs={12} sm={6}>
@@ -84,6 +114,7 @@ export default function SignUp() {
                                 label="Last Name"
                                 name="lastName"
                                 autoComplete="lname"
+                                onChange={(e) => setUserLastName(e.target.value)}
                             />
                         </Grid>
                         <Grid item xs={12}>
@@ -96,6 +127,7 @@ export default function SignUp() {
                                 type="username"
                                 id="username"
                                 autoComplete="username"
+                                onChange={(e) => setUsername(e.target.value)}
                             />
                         </Grid>
                         <Grid item xs={12}>
@@ -107,6 +139,7 @@ export default function SignUp() {
                                 label="Email Address"
                                 name="email"
                                 autoComplete="email"
+                                onChange={(e) => setUserEmail(e.target.value)}
                             />
                         </Grid>
                         <Grid item xs={12}>
@@ -119,6 +152,7 @@ export default function SignUp() {
                                 type="password"
                                 id="password"
                                 autoComplete="current-password"
+                                onChange={(e) => setUserPassword(e.target.value)}
                             />
                         </Grid>
                     </Grid>

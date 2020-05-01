@@ -9,13 +9,15 @@ module.exports = (app) => {
       .catch(err => console.log(err));
   });
 
-  app.get("/api/user/:id", (req, res) => {
-    userController.findById;
-  });
+  app.get("/user").post(usersController.create);
 
-  app.post("/api/user/create", (req, res) => {
-    userController.create;
-  });
+  // app.get("/api/user/:id", (req, res) => {
+  //   userController.findById;
+  // });
+
+  // app.post("/api/user/create", (req, res) => {
+  //   userController.create;
+  // });
 }
 
 // router.use("/user", userRoutes);

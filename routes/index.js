@@ -1,4 +1,5 @@
 const path = require("path");
+const apiUsersRoutes = require("./api/user");
 
 module.exports = (app, io) => {
     app.get('/', (req, res) => {

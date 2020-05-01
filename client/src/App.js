@@ -1,34 +1,82 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
-import LogIn from "./pages/Login/Login";
-import SignUp from "./pages/SignUp/SignUp";
 import './App.css';
-import Chat from "./pages/Rooms/Homepage/Homepage";
+
+import AppBarHS from "./components/AppBar/AppBar";
+import LogIn from "./pages/LandingPage/LandingPage";
+import SignUp from "./pages/SignUp/SignUp";
+import Homepage from "./pages/Rooms/Homepage/Homepage";
 import ViewingRoom from "./pages/Rooms/ViewingRoom/ViewingRoom";
 
-function App() {
+import { createMuiTheme, ThemeProvider } from "@material-ui/core";
+
+export default () => {
+
+  //hook for light vs dark mode
+  const [darkMode, setDarkMode] = useState(true);
+
+  //initialize theme for material ui
+  const theme = createMuiTheme({
+    palette: {
+      primary: { main: darkMode ? "#fafafa" : "#0288d1" },
+      secondary: { main: darkMode ? "#fafafa" : "#0288d1" },
+      paper: {
+        main: darkMode ? "#f57c00" : "#f5f5f5",
+        light: darkMode ? "#262626" : "#f5f5f5",
+        lighter: darkMode ? "#333333" : "#f5f5f5",
+      },
+      tertiary: { main: "#FEB2D0" },
+      info: { main: "#a6a6a6" },
+      signUp: {
+        main: "#f57c00",
+        font: "#fafafa",
+      },
+
+    },
+    typography: {
+      fontFamily: '"Quicksand", "Helvetica", "Arial", sans-serif',
+      fontSize: 14,
+      fontWeightLight: 300,
+      fontWeightRegular: 400,
+      fontWeightMedium: 500,
+    },
+    overrides: {
+      MuiMenu: {
+        list: {
+          padding: 0,
+        },
+      },
+      MuiExpansionPanelSummary: {
+        root: {
+          disabled: {
+            opacity: "0.0",
+          },
+        },
+      },
+    },
+    shadows: ["none"],
+  });
+
+  // fx to be passed to app bar to toggle dark mode
+  const toggleTheme = () => {
+    setDarkMode(!darkMode);
+  };
 
   return (
     <Router>
-      <div className="App">
-        <Switch>
-          <Route exact path={["/", "/login"]}>
-            <LogIn />
-          </Route>
-          <Route exact path="/signup">
-            <SignUp />
-          </Route>
-          <Route exact path={["/homepage"]}>
-            <Chat />
-          </Route>
-          <Route exact path={["/viewingroom"]}>
-            <ViewingRoom />
-          </Route>
-        </Switch>
-      </div>
+      <ThemeProvider theme={theme}>
+        <AppBarHS toggleTheme={toggleTheme} />
+        <div className="App">
+          <Switch>
+            <Route exact path={["/", "/login"]}><LogIn /></Route>
+            <Route exact path="/signup"><SignUp /></Route>
+            <Route exact path={["/homepage"]}><Homepage /></Route>
+            <Route exact path={["/viewingroom"]}><ViewingRoom /></Route>
+          </Switch>
+        </div>
+      </ThemeProvider>
     </Router>
 
   );
 }
 
-export default App;

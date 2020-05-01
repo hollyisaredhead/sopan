@@ -9,7 +9,9 @@ module.exports = (app) => {
       .catch(err => console.log(err));
   });
 
-  app.get("/user").post(usersController.create);
+  app.post("/user", (req, res) => {
+    userController.create(req.data);
+  })
 
   // app.get("/api/user/:id", (req, res) => {
   //   userController.findById;

@@ -27,7 +27,14 @@ export default () => {
       },
       video: {
         main: darkMode ? "#fafafa" : "#212121",
-
+      },
+      chat: {
+        main: darkMode ? "#212121" : "#fafafa",
+        secondary: darkMode ? "#eeeeee" : "#424242",
+        paper: {
+          main: darkMode ? "#fafafa" : "#212121",
+          secondary: darkMode ? "#9e9e9e" : "#0288d1",
+        },
       },
       tertiary: { main: "#FEB2D0" },
       info: { main: "#a6a6a6" },

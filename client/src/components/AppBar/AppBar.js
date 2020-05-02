@@ -14,6 +14,7 @@ import {
 } from "@material-ui/core";
 
 import DehazeIcon from "@material-ui/icons/Dehaze";
+import Brightness3Icon from '@material-ui/icons/Brightness3';
 import Brightness5Icon from "@material-ui/icons/Brightness5";
 
 import LoginBtn from '../../components/Login/LoginBtn';
@@ -82,7 +83,7 @@ class AppBarHs extends React.Component {
               </Link>
                         </Typography> */}
                             <IconButton onClick={this.props.toggleTheme} color="primary">
-                                <Brightness5Icon />
+                                <Brightness3Icon />
                             </IconButton>
                             <Button
                                 color="secondary"

@@ -1,5 +1,30 @@
 import React from 'react';
-import "./style.css";
+import {
+  Input,
+  OutlinedInput,
+  Button,
+  Popper,
+  Typography,
+  TextField,
+  ClickAwayListener,
+  withStyles,
+  List,
+} from "@material-ui/core";
+// import "./style.css";
+
+const styles = (theme) => ({
+  root: {
+    width: "98%",
+    backgroundColor: theme.palette.chat.secondary,
+    color: theme.palette.chat.main,
+    borderColor: theme.palette.secondary.main,
+  },
+  notchedOutline: {
+    borderWidth: "1px",
+    borderColor: theme.palette.secondary.main,
+    color: "white !important",
+  },
+});
 
 class ChatInput extends React.Component {
 
@@ -32,10 +57,16 @@ class ChatInput extends React.Component {
 
 
   render() {
+    const { classes } = this.props;
+
     return (
       <div>
         <form id="chat-form" action="">
-          <input id="m" autoComplete="off" /><button id="send">Send</button>
+          <OutlinedInput
+            id="m"
+            autoComplete="off"
+            className={(classes.root)}
+          />
         </form>
       </div>
     );
@@ -43,4 +74,4 @@ class ChatInput extends React.Component {
 
 }
 
-export default ChatInput;
+export default withStyles(styles)(ChatInput);

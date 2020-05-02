@@ -7,6 +7,8 @@ import CardHeader from '@material-ui/core/CardHeader';
 import Paper from '@material-ui/core/Paper';
 import Grid from '@material-ui/core/Grid';
 import { withStyles } from '@material-ui/core/styles';
+import { spacing } from '@material-ui/system';
+import { Divider } from '@material-ui/core';
 
 const styles = (theme) => ({
     root: {
@@ -15,12 +17,16 @@ const styles = (theme) => ({
     paper: {
         padding: theme.spacing(2),
         textAlign: 'center',
-        color: theme.palette.text.secondary,
+        backgroundColor: theme.palette.paper.main,
     },
     videoStyling: {
         paddingTop: 25,
         height: 660,
-        overflow: "auto"
+        overflow: "auto",
+        backgroundColor: theme.palette.video.main,
+        position: "relative",
+        border: "solid 1px",
+        borderColor: theme.palette.primary.main,
     },
     videoSearch: {
         height: 685,
@@ -70,9 +76,9 @@ class Video extends React.Component {
     render() {
         const { classes } = this.props;
         return (
-            <Grid id="video" item xs={10} container>
-                <Grid item xs={9} overflow="auto">
-                    <Paper className={(classes.paper, classes.videoStyling)}>
+            <Grid id="video" item xs={10} spacing={1} container>
+                <Grid item xs={9} paddingLeft={3} overflow="auto">
+                    <Paper className={(classes.videoStyling)}>
                         <iframe title="vid" allow="autoplay; fullscreen" id="youtube" width="95%" height="95%"></iframe>
                     </Paper>
                 </Grid>

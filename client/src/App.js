@@ -5,7 +5,7 @@ import './App.css';
 import AppBarHS from "./components/AppBar/AppBar";
 import LogIn from "./pages/LandingPage/LandingPage";
 import SignUp from "./pages/SignUp/SignUp";
-import Homepage from "./pages/Rooms/Homepage/Homepage";
+// import Homepage from "./pages/Rooms/Homepage/Homepage";
 import ViewingRoom from "./pages/Rooms/ViewingRoom/ViewingRoom";
 
 import { createMuiTheme, ThemeProvider } from "@material-ui/core";
@@ -21,9 +21,13 @@ export default () => {
       primary: { main: darkMode ? "#fafafa" : "#0288d1" },
       secondary: { main: darkMode ? "#fafafa" : "#0288d1" },
       paper: {
-        main: darkMode ? "#f57c00" : "#f5f5f5",
+        main: darkMode ? "#f57c00" : "#212121",
         light: darkMode ? "#262626" : "#f5f5f5",
         lighter: darkMode ? "#333333" : "#f5f5f5",
+      },
+      video: {
+        main: darkMode ? "#fafafa" : "#212121",
+
       },
       tertiary: { main: "#FEB2D0" },
       info: { main: "#a6a6a6" },
@@ -70,7 +74,7 @@ export default () => {
           <Switch>
             <Route exact path={["/", "/login"]}><LogIn /></Route>
             <Route exact path="/signup"><SignUp /></Route>
-            <Route exact path={["/homepage"]}><Homepage /></Route>
+            {/* <Route exact path={["/homepage"]}><Homepage /></Route> */}
             <Route exact path={["/viewingroom"]}><ViewingRoom /></Route>
           </Switch>
         </div>

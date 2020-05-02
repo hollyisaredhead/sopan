@@ -7,10 +7,8 @@ import {
     Button,
     withStyles,
 } from "@material-ui/core";
-// import { Link } from "react-router-dom";
 
 import pandemicMap from "../../assets/images/pandemicMap3.svg"
-
 import SignUpBtn from "../../components/SignUp/SignUpBtn";
 
 const useStyles = makeStyles((theme) => ({
@@ -19,7 +17,7 @@ const useStyles = makeStyles((theme) => ({
         maxWidth: "100%",
     },
     container: {
-        height: "80vh",
+        height: "100vh",
         margin: "auto",
     },
     subWrapper1: {
@@ -28,12 +26,10 @@ const useStyles = makeStyles((theme) => ({
         maxHeight: "100%",
         width: "auto",
         backgroundColor: theme.palette.paper.main,
-        // backgroundImage: `url(${OrangeBG})`,
     },
     subWrapper2: {
         minHeight: `80vh`,
         width: "100%",
-        // backgroundImage: `url(${BlueBG})`,
     },
     description: {
         marginTop: "auto",

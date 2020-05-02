@@ -10,7 +10,6 @@ import VolumeSlider from '../../components/Volume/Volume';
 import FullscreenIcon from '@material-ui/icons/Fullscreen';
 import FullscreenExitIcon from '@material-ui/icons/FullscreenExit';
 
-
 import ChatInput from '../../components/Chat/ChatInput/ChatInput';
 import ChatMessage from '../../components/Chat/ChatMessage/ChatMessage';
 import ChatHeader from '../../components/Chat/ChatHeader/ChatHeader';
@@ -24,24 +23,26 @@ import { Divider } from '@material-ui/core';
 
 const useStyles = makeStyles((theme) => ({
     root: {
+        minHeight: "100vh",
+        maxHeight: "100%",
+        width: "100%",
         flexGrow: 1,
+        backgroundColor: theme.palette.paper.main
     },
     paper: {
-        padding: theme.spacing(2),
+        padding: theme.spacing(0),
         textAlign: 'center',
         color: theme.palette.text.secondary,
     },
-    videoHeight: {
-        height: 688
+    wrapper: {
+        backgroundColor: theme.palette.paper.main,
     },
-    videoStyling: {
-        overflow: "auto"
-    },
-    videoControlHeight: {
-        height: 200
-    },
-    chatHeight: {
-        height: 688
+    chatContainer: {
+        height: 685,
+        backgroundColor: theme.palette.video.main,
+        position: "relative",
+        border: "solid 1px",
+        borderColor: theme.palette.primary.main,
     },
     chatTextarea: {
         width: 100
@@ -56,13 +57,12 @@ export default function RoomLayout() {
 
     return (
         <div className={classes.root}>
-            <Grid id="top-row" container spacing={0}>
+            <Grid id="top-row" container spacing={2}>
 
                 <Video />
 
-
                 <Grid id="chat-container" container item xs={2}>
-                    <Paper className={(classes.paper, classes.chatHeight)}>
+                    <Paper className={(classes.chatContainer)}>
                         <ChatHeader />
                         <ChatMessage />
 
@@ -70,8 +70,7 @@ export default function RoomLayout() {
                         <ChatInput />
                     </Paper>
                 </Grid>
-
-                <Grid id="video-control" xs={12}>
+                {/* <Grid id="video-control" xs={12}>
                     <Paper className={(classes.paper, classes.videoControlHeight)}>
                         <Grid id="volume-screen">Volume and fullscreen controls
                             <div style={{ width: '100%' }}>
@@ -94,7 +93,7 @@ export default function RoomLayout() {
                             </Box>
                         </Grid>
                     </Paper>
-                </Grid>
+                </Grid> */}
 
             </Grid>
         </div >

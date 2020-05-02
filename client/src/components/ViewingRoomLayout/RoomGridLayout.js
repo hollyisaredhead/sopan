@@ -38,7 +38,7 @@ const useStyles = makeStyles((theme) => ({
         backgroundColor: theme.palette.paper.main,
     },
     chatContainer: {
-        height: 685,
+        height: "71vh",
         backgroundColor: theme.palette.video.main,
         position: "relative",
         border: "solid 1px",
@@ -63,11 +63,11 @@ export default function RoomLayout() {
 
                 <Grid id="chat-container" container item xs={2}>
                     <Paper className={(classes.chatContainer)}>
-                        <ChatHeader />
+                        {/* <ChatHeader /> */}
                         <ChatMessage />
 
-                        <Divider />
-                        <ChatInput />
+                        {/* <Divider />
+                        <ChatInput /> */}
                     </Paper>
                 </Grid>
                 {/* <Grid id="video-control" xs={12}>

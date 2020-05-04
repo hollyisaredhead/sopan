@@ -5,8 +5,6 @@ var io = require('socket.io')(http);
 const mongoose = require("mongoose");
 const cors = require('cors');
 const helmet = require('helmet');
-const jwt = require('express-jwt');
-const jwksRsa = require('jwks-rsa');
 var PORT = process.env.PORT || 3001
 
 require("dotenv").config();

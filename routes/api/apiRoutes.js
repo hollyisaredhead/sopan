@@ -11,7 +11,7 @@ const checkJwt = jwt({
   }),
 
   // Validate the audience and the issuer.
-  audience: '1nTnzvwUbJMIIiJXM312bacR2H3890Nl',
+  audience: 'UlmTKS3bSNjG0v1pOs3Q0R7ZdBiIwtXG',
   issuer: `https://dev-h60-ggjt.auth0.com/`,
   algorithms: ['RS256']
 });

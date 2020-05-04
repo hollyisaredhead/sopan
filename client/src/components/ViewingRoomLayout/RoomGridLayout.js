@@ -61,7 +61,7 @@ export default function RoomLayout() {
 
                 <Video />
 
-                <Grid id="chat-container" container item xs={2}>
+                <Grid id="chat-container" container item xs={8} md={2}>
                     <Paper className={(classes.chatContainer)}>
                         {/* <ChatHeader /> */}
                         <ChatMessage />

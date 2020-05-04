@@ -20,7 +20,7 @@ const styles = (theme) => ({
         backgroundColor: theme.palette.paper.main,
     },
     videoStyling: {
-        paddingTop: 25,
+        paddingTop: 20,
         height: 660,
         overflow: "auto",
         backgroundColor: theme.palette.video.main,
@@ -30,7 +30,8 @@ const styles = (theme) => ({
     },
     videoSearch: {
         height: 685,
-        overflow: "auto"
+        overflow: "auto",
+        
     },
     videoControlHeight: {
         height: 200

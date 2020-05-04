@@ -6,8 +6,9 @@
  font-weight: 600;
 }
 #search:hover{
-    background-color: darkgray;
+    background-color: darkslategrey;
 }
+
 #search-query{
     width: 70%;
     font-weight: 500;
@@ -15,7 +16,7 @@
 
 #search-results{
 align-content: left;
-font-size: small;
+font-size: smaller;
 }
 
 .search-results-container{
@@ -39,7 +40,7 @@ ul{
     padding: 0px;
 
 }
-/* .MuiListItem-gutters {
-    padding-left: 0px;
-    padding-right: 16px;
-} */
+
+.MuiCardHeader-root{
+    font-size: 12px;
+}

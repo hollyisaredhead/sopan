@@ -20,7 +20,7 @@ const styles = (theme) => ({
         backgroundColor: theme.palette.paper.main,
     },
     videoStyling: {
-        paddingTop: 25,
+        paddingTop: 20,
         height: 660,
         overflow: "auto",
         backgroundColor: theme.palette.video.main,
@@ -30,11 +30,16 @@ const styles = (theme) => ({
     },
     videoSearch: {
         height: 685,
-        overflow: "auto"
+        overflow: "auto",
+        
     },
     videoControlHeight: {
         height: 200
     },
+    subheader: {
+        marginTop: 10,
+    
+    }
 });
 
 class Video extends React.Component {
@@ -82,7 +87,7 @@ class Video extends React.Component {
                         <iframe title="vid" allow="autoplay; fullscreen" id="youtube" width="95%" height="95%"></iframe>
                     </Paper>
                 </Grid>
-                <Grid item xs={3} id="vidSearch">
+                <Grid item xs={12} md={3} id="vidSearch">
                     <Paper className={(classes.paper, classes.videoStyling)}>
                         <CardHeader
                             subheader="Search"

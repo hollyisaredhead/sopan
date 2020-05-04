@@ -38,7 +38,7 @@ const useStyles = makeStyles((theme) => ({
         backgroundColor: theme.palette.paper.main,
     },
     chatContainer: {
-        height: "71vh",
+        // height: "71vh",
         backgroundColor: theme.palette.video.main,
         position: "relative",
         border: "solid 1px",

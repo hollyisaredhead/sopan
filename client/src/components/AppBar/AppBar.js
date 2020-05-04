@@ -14,8 +14,8 @@ import {
 } from "@material-ui/core";
 
 import DehazeIcon from "@material-ui/icons/Dehaze";
+import PersonIcon from '@material-ui/icons/Person';
 import Brightness3Icon from '@material-ui/icons/Brightness3';
-import Brightness5Icon from "@material-ui/icons/Brightness5";
 
 import LoginBtn from '../../components/Login/LoginBtn';
 
@@ -91,7 +91,7 @@ class AppBarHs extends React.Component {
                                 aria-haspopup="true"
                                 onClick={this.handleClick}
                             >
-                                <DehazeIcon />
+                                <PersonIcon />
                             </Button>
                             <Menu
                                 id="simple-menu"
@@ -116,7 +116,7 @@ class AppBarHs extends React.Component {
                                     className={classes.menuItem}
                                     onClick={this.handleClose}
                                 >
-                                    <LoginBtn />
+                                    Logout
 
                                 </MenuItem>
                             </Menu>

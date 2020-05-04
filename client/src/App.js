@@ -27,6 +27,7 @@ export default () => {
       },
       video: {
         main: darkMode ? "#fafafa" : "#212121",
+        
       },
       chat: {
         main: darkMode ? "#212121" : "#fafafa",
@@ -90,4 +91,3 @@ export default () => {
 
   );
 }
-

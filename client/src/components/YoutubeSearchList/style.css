@@ -1,3 +1,45 @@
-#search-results-container {
-    
+#search {
+ color:white;
+ background-color: darkorange;
+ border: 2px darkorange;
+ border-radius: 3px;   
+ font-weight: 600;
 }
+#search:hover{
+    background-color: darkgray;
+}
+#search-query{
+    width: 70%;
+    font-weight: 500;
+}
+
+#search-results{
+align-content: left;
+font-size: small;
+}
+
+.search-results-container{
+    align-content: center;
+}
+
+#fixed{
+    position: fixed;
+}
+#vid-thumbnail{
+    width: 100%;
+    padding-right: 10px;
+}
+
+#search-results{
+    font-size: 10px;
+}
+
+ul{
+    margin-left: 2px;
+    padding: 0px;
+
+}
+/* .MuiListItem-gutters {
+    padding-left: 0px;
+    padding-right: 16px;
+} */

@@ -17,7 +17,7 @@ const useStyles = makeStyles((theme) => ({
         maxWidth: "100%",
     },
     container: {
-        height: "100vh",
+        height: "80vh",
         margin: "auto",
     },
     subWrapper1: {

@@ -12,6 +12,8 @@ import { deepOrange } from '@material-ui/core/colors';
 import CardHeader from '@material-ui/core/CardHeader';
 import Covid from '../../../assets/images/coronavirus.png';
 
+import auth0Client from "../../../utils/Auth";
+
 
 const styles = (theme) => ({
     root: {
@@ -58,7 +60,7 @@ class Chat extends React.Component {
 
         socket.on('chat message', function (msg) {
             let newMessage = document.createElement("li");
-            newMessage.innerHTML = msg;
+            newMessage.innerHTML = `${auth0Client.getProfile().nickname}: ${msg}`;
             document.getElementById("messages").appendChild(newMessage);
             messageContainer.scrollTo(0, document.body.scrollHeight)
             messageContainer.scrollTop = messageContainer.scrollHeight;

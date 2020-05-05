@@ -9,16 +9,15 @@ import SignUp from "./pages/SignUp/SignUp";
 // import Homepage from "./pages/Rooms/Homepage/Homepage";
 import ViewingRoom from "./pages/Rooms/ViewingRoom/ViewingRoom";
 import Callback from "./components/Callback/Callback";
+import SecuredRoute from "./components/SecuredRoute/SecuredRoute";
 
 import { createMuiTheme, ThemeProvider } from "@material-ui/core";
 
 export default () => {
 
-  console.log(auth0Client.getProfile());
-
   //hook for light vs dark mode
   const [darkMode, setDarkMode] = useState(true);
-  const [checkingSession, setCheckingSession] = useState(true)
+  const [checkingSession, setCheckingSession] = useState(true);
 
   //initialize theme for material ui
   const theme = createMuiTheme({
@@ -93,14 +92,13 @@ export default () => {
   };
 
   async function checkSession() {
-    console.log(window.location.pathname)
     if (window.location.pathname === '/viewingroom') {
       setCheckingSession(false);
       return;
     }
     try {
       await auth0Client.silentAuth();
-      setCheckingSession(checkingSession);
+      setCheckingSession(false);
     } catch (err) {
       if (err.error !== 'login_required') console.log(err.error);
     }
@@ -123,7 +121,7 @@ export default () => {
             <Route exact path="/signup"><SignUp /></Route>
             <Route exact path='/callback' component={Callback} />
             {/* <Route exact path={["/homepage"]}><Homepage /></Route> */}
-            <Route exact path={["/viewingroom"]}><ViewingRoom /></Route>
+            <SecuredRoute exact path={["/viewingroom"]} checkingSession={checkingSession} component={ViewingRoom}></SecuredRoute>
           </Switch>
         </div>
       </ThemeProvider>

@@ -17,7 +17,7 @@ class YoutubeSearchList extends React.Component {
     render() {
         const { classes } = this.props;
         return (
-            <div id fixed>
+            <div>
                 <form id="youtube" onSubmit={this.props.handleSubmit}>
                     <input id="search-query"></input>
                     <button id="search">SEARCH</button>

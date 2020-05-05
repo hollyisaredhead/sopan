@@ -5,6 +5,8 @@ import DialogContent from '@material-ui/core/DialogContent';
 import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
 
+import auth0Client from "../../utils/Auth";
+
 import SignUp from './SignUp';
 
 const useStyles = makeStyles((theme) => ({
@@ -40,14 +42,14 @@ export default function FormDialog() {
 
     return (
         <div >
-            <Button className={classes.Btn} variant="outlined" size="small" onClick={handleClickOpen}>
+            <Button className={classes.Btn} variant="outlined" size="small" onClick={auth0Client.signIn}>
                 <Typography className={classes.BtnFont}>Get Started</Typography>
             </Button>
-            <Dialog open={open} onClose={handleClose} aria-labelledby="form-dialog-title">
+            {/* <Dialog open={open} onClose={handleClose} aria-labelledby="form-dialog-title">
                 <DialogContent>
                     <SignUp />
                 </DialogContent>
-            </Dialog>
+            </Dialog> */}
         </div>
     );
 }

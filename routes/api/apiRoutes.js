@@ -1,9 +1,24 @@
-const axios = require("axios");
-const router = require("express").Router();
+const jwt = require('express-jwt');
+const jwksRsa = require('jwks-rsa');
 const userController = require("../../controllers/userController");
 
+const checkJwt = jwt({
+  secret: jwksRsa.expressJwtSecret({
+    cache: true,
+    rateLimit: true,
+    jwksRequestsPerMinute: 5,
+    jwksUri: `https://dev-h60-ggjt.auth0.com/.well-known/jwks.json`
+  }),
+
+  // Validate the audience and the issuer.
+  audience: 'UlmTKS3bSNjG0v1pOs3Q0R7ZdBiIwtXG',
+  issuer: `https://dev-h60-ggjt.auth0.com/`,
+  algorithms: ['RS256']
+});
+
+
 module.exports = (app) => {
-  app.post("/user", (req, res) => {
+  app.post("/user", checkJwt, (req, res) => {
     userController.create(req.data);
   })
 
@@ -16,16 +31,3 @@ module.exports = (app) => {
   // });
 }
 
-// router.use("/user", userRoutes);
-
-// router.route("/")
-//   .get(userController.findAll)
-//   .post(userController.create);
-
-// // Matches with "/api/user/:id"
-// router
-//   .route("/:id")
-//   .get(userController.findById)
-
-
-// module.exports = router;

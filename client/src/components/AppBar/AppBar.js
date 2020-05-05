@@ -12,8 +12,11 @@ import {
 
 import PersonIcon from '@material-ui/icons/Person';
 import Brightness3Icon from '@material-ui/icons/Brightness3';
+import Avatar from '@material-ui/core/Avatar';
 
 // import LoginBtn from '../../components/Login/LoginBtn';
+import auth0Client from "../../utils/Auth";
+
 
 
 const styles = (theme) => ({
@@ -46,9 +49,8 @@ const styles = (theme) => ({
 });
 
 class AppBarHs extends React.Component {
-
     state = {
-        anchorEl: null,
+        anchorEl: null
     };
 
     // handle opening and closing of dropdown
@@ -62,8 +64,14 @@ class AppBarHs extends React.Component {
         this.setState({ anchorEl: null });
     };
 
+    signOut = () => {
+        auth0Client.signOut();
+        this.props.history.replace('/');
+    };
+
     render() {
         const { classes } = this.props;
+
         return (
             <div className={classes.root}>
                 <AppBar position="static" >
@@ -82,7 +90,16 @@ class AppBarHs extends React.Component {
                                 aria-haspopup="true"
                                 onClick={this.handleClick}
                             >
-                                <PersonIcon />
+
+                                {
+                                    !auth0Client.isAuthenticated() &&
+                                    <PersonIcon />
+                                }
+                                {
+                                    auth0Client.isAuthenticated() &&
+                                    <Avatar alt={auth0Client.getProfile().nickname} src={auth0Client.getProfile().picture} />
+                                }
+
                             </Button>
                             <Menu
                                 id="simple-menu"
@@ -105,7 +122,7 @@ class AppBarHs extends React.Component {
                 </MenuItem> */}
                                 <MenuItem
                                     className={classes.menuItem}
-                                    onClick={this.handleClose}
+                                    onClick={() => { this.signOut() }}
                                 >
                                     Logout
 

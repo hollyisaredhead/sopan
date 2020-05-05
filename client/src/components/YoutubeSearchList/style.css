@@ -27,7 +27,7 @@ font-size: smaller;
     position: fixed;
 }
 #vid-thumbnail{
-    width: 100%;
+    /* width: 100%; */
     padding-right: 10px;
 }
 

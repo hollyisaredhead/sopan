@@ -7,6 +7,7 @@ import CardHeader from '@material-ui/core/CardHeader';
 import Paper from '@material-ui/core/Paper';
 import Grid from '@material-ui/core/Grid';
 import { withStyles } from '@material-ui/core/styles';
+import Typography from '@material-ui/core/Typography';
 import { spacing } from '@material-ui/system';
 import { Divider } from '@material-ui/core';
 
@@ -31,15 +32,22 @@ const styles = (theme) => ({
     videoSearch: {
         height: 685,
         overflow: "auto",
-        
     },
     videoControlHeight: {
         height: 200
     },
-    subheader: {
-        marginTop: 10,
-    
-    }
+    searchContainer: {
+        height: 680,
+        overflow: "auto",
+        backgroundColor: theme.palette.video.main,
+        position: "relative",
+        border: "solid 1px",
+        borderColor: theme.palette.primary.main,
+    },
+    header: {
+        // backgroundColor: theme.palette.chat.paper.main,
+        color: theme.palette.chat.main,
+    },
 });
 
 class Video extends React.Component {
@@ -82,15 +90,19 @@ class Video extends React.Component {
         const { classes } = this.props;
         return (
             <Grid id="video" item xs={10} spacing={1} container>
-                <Grid item xs={9} paddingLeft={3} overflow="auto">
+                <Grid item xs={9} overflow="auto">
                     <Paper className={(classes.videoStyling)}>
                         <iframe title="vid" allow="autoplay; fullscreen" id="youtube" width="95%" height="95%"></iframe>
                     </Paper>
                 </Grid>
                 <Grid item xs={12} md={3} id="vidSearch">
-                    <Paper className={(classes.paper, classes.videoStyling)}>
-                        <CardHeader
-                            subheader="Search"
+                    <Paper className={(classes.paper, classes.searchContainer)}>
+                        <CardHeader className={classes.header}
+                            title={
+                                <Typography variant="h6" component="h6">
+                                    Search
+                                </Typography>
+                            }
                         />
                         <YoutubeSearchList
                             handleSubmit={this.handleSubmit}

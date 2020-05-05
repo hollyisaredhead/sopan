@@ -1,15 +1,14 @@
 import React from "react";
+import {
+    Grid,
+    Paper,
+    withStyles,
+    Typography,
+    CardHeader,
+} from '@material-ui/core';
 import API from "../../utils/API";
 import YoutubeSearchList from "../YoutubeSearchList/YoutubeSearchList.js";
 
-import CardHeader from '@material-ui/core/CardHeader';
-
-import Paper from '@material-ui/core/Paper';
-import Grid from '@material-ui/core/Grid';
-import { withStyles } from '@material-ui/core/styles';
-import Typography from '@material-ui/core/Typography';
-import { spacing } from '@material-ui/system';
-import { Divider } from '@material-ui/core';
 
 const styles = (theme) => ({
     root: {
@@ -90,12 +89,12 @@ class Video extends React.Component {
         const { classes } = this.props;
         return (
             <Grid id="video" item xs={10} spacing={1} container>
-                <Grid item xs={9} overflow="auto">
+                <Grid item xs={9} overflow="auto" >
                     <Paper className={(classes.videoStyling)}>
                         <iframe title="vid" allow="autoplay; fullscreen" id="youtube" width="95%" height="95%"></iframe>
                     </Paper>
                 </Grid>
-                <Grid item xs={12} md={3} id="vidSearch">
+                <Grid item xs={2} md={3} id="vidSearch">
                     <Paper className={(classes.paper, classes.searchContainer)}>
                         <CardHeader className={classes.header}
                             title={

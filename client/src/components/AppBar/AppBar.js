@@ -1,24 +1,20 @@
 import React from "react";
 import {
     Grid,
-    makeStyles,
     AppBar,
     Toolbar,
     Button,
-    ButtonGroup,
     Menu,
     MenuItem,
     IconButton,
     withStyles,
-    Icon,
 } from "@material-ui/core";
 
-import DehazeIcon from "@material-ui/icons/Dehaze";
 import PersonIcon from '@material-ui/icons/Person';
 import Brightness3Icon from '@material-ui/icons/Brightness3';
 import Avatar from '@material-ui/core/Avatar';
 
-import LoginBtn from '../../components/Login/LoginBtn';
+// import LoginBtn from '../../components/Login/LoginBtn';
 import auth0Client from "../../utils/Auth";
 
 
@@ -78,18 +74,13 @@ class AppBarHs extends React.Component {
 
         return (
             <div className={classes.root}>
-                <AppBar position="static">
+                <AppBar position="static" >
                     <Toolbar className={classes.toolBar}>
                         <Grid
                             justify="space-between"
                             container
                             spacing={24}
                         >
-                            {/* <Typography color="primary" variant="h6" className={classes.title}>
-                            <Link className={classes.homeLink} to="/">
-                                SoPan
-              </Link>
-                        </Typography> */}
                             <IconButton onClick={this.props.toggleTheme} color="primary">
                                 <Brightness3Icon />
                             </IconButton>

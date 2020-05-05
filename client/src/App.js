@@ -75,13 +75,6 @@ export default () => {
           },
         },
       },
-      MuiExpansionPanelSummary: {
-        body1: {
-          disabled: {
-            opacity: "0.0",
-          },
-        },
-      },
     },
     shadows: ["none"],
   });

@@ -22,10 +22,6 @@ font-size: smaller;
 .search-results-container{
     align-content: center;
 }
-
-#fixed{
-    position: fixed;
-}
 #vid-thumbnail{
     /* width: 100%; */
     padding-right: 10px;

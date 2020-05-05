@@ -27,7 +27,7 @@ export default () => {
       },
       video: {
         main: darkMode ? "#fafafa" : "#212121",
-        
+
       },
       chat: {
         main: darkMode ? "#212121" : "#fafafa",
@@ -66,13 +66,6 @@ export default () => {
       },
       MuiExpansionPanelSummary: {
         root: {
-          disabled: {
-            opacity: "0.0",
-          },
-        },
-      },
-      MuiExpansionPanelSummary: {
-        body1: {
           disabled: {
             opacity: "0.0",
           },

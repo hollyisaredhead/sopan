@@ -46,7 +46,6 @@ export default function FormDialog() {
             <Dialog open={open} onClose={handleClose} aria-labelledby="form-dialog-title">
                 <DialogContent>
                     <SignUp />
-
                 </DialogContent>
             </Dialog>
         </div>

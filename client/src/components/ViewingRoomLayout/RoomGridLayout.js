@@ -1,25 +1,18 @@
 import React from 'react';
-import { makeStyles } from '@material-ui/core/styles';
-import Paper from '@material-ui/core/Paper';
-import Grid from '@material-ui/core/Grid';
-import Box from '@material-ui/core/Box';
-import Container from '@material-ui/core/Container';
+import {
+    makeStyles,
+    Paper,
+    Grid,
+} from '@material-ui/core';
 
+// import VolumeSlider from '../../components/Volume/Volume';
+// import FullscreenIcon from '@material-ui/icons/Fullscreen';
+// import FullscreenExitIcon from '@material-ui/icons/FullscreenExit';
+// import GroupAvatars from '../../components/Avatar/AvatarGroup';
+// import { Divider } from '@material-ui/core';
 
-import VolumeSlider from '../../components/Volume/Volume';
-import FullscreenIcon from '@material-ui/icons/Fullscreen';
-import FullscreenExitIcon from '@material-ui/icons/FullscreenExit';
-
-import ChatInput from '../../components/Chat/ChatInput/ChatInput';
-import ChatMessage from '../../components/Chat/ChatMessage/ChatMessage';
-import ChatHeader from '../../components/Chat/ChatHeader/ChatHeader';
-
+import Chat from '../Chat/ChatMessage/ChatMessage';
 import Video from '../../components/Video/Video';
-import VideoSearchList from '../../components/YoutubeSearchList/YoutubeSearchList';
-
-import GroupAvatars from '../../components/Avatar/AvatarGroup';
-import YoutubeSearchList from '../../components/YoutubeSearchList/YoutubeSearchList';
-import { Divider } from '@material-ui/core';
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -34,6 +27,9 @@ const useStyles = makeStyles((theme) => ({
         textAlign: 'center',
         color: theme.palette.text.secondary,
     },
+    // container: {
+    //     marginLeft: 5,
+    // },
     wrapper: {
         backgroundColor: theme.palette.paper.main,
     },
@@ -44,12 +40,6 @@ const useStyles = makeStyles((theme) => ({
         border: "solid 1px",
         borderColor: theme.palette.primary.main,
     },
-    chatTextarea: {
-        width: 100
-    },
-    chatTextHeight: {
-        height: 75
-    },
 }));
 
 export default function RoomLayout() {
@@ -57,17 +47,11 @@ export default function RoomLayout() {
 
     return (
         <div className={classes.root}>
-            <Grid id="top-row" container spacing={2}>
-
+            <Grid id="top-row" container className={classes.container} spacing={1}>
                 <Video />
-
                 <Grid id="chat-container" container item xs={8} md={2}>
                     <Paper className={(classes.chatContainer)}>
-                        {/* <ChatHeader /> */}
-                        <ChatMessage />
-
-                        {/* <Divider />
-                        <ChatInput /> */}
+                        <Chat />
                     </Paper>
                 </Grid>
                 {/* <Grid id="video-control" xs={12}>

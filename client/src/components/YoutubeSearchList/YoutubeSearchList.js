@@ -8,6 +8,9 @@ const styles = (theme) => ({
     root: {
         flexGrow: 1,
     },
+    resultStyling: {
+        color: theme.palette.chat.main,
+    },
 });
 
 class YoutubeSearchList extends React.Component {
@@ -19,15 +22,15 @@ class YoutubeSearchList extends React.Component {
                     <input id="search-query"></input>
                     <button id="search">SEARCH</button>
                 </form>
-                <div id="search-results-container">
+                <div id="search-results-container" className={classes.resultStyling}>
                     <ul id="search-results">
                         {this.props.results.map(vid => (
                             <ListItem button onClick={this.props.chooseVideo} vid-id={vid.id.videoId} key={vid.id.videoId}>
-                                
+
                                 <img id="vid-thumbnail" src={vid.snippet.thumbnails.default.url} alt={vid.snippet.title}></img>
-                             
-                                    <ListItemText primary={vid.snippet.title} />
-                                    
+
+                                <ListItemText primary={vid.snippet.title} />
+
                             </ListItem>
                         ))}
                     </ul>
@@ -38,4 +41,4 @@ class YoutubeSearchList extends React.Component {
     }
 }
 
-export default YoutubeSearchList;
+export default withStyles(styles)(YoutubeSearchList);

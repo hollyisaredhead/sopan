@@ -90,7 +90,7 @@ export default () => {
   return (
     <Router>
       <ThemeProvider theme={theme}>
-        <AppBarHS toggleTheme={toggleTheme} />
+        <AppBarHS toggleTheme={toggleTheme} style={{ margin: 0 }} />
         <div className="App">
           <Switch>
             <Route exact path={["/", "/login"]}><LogIn /></Route>

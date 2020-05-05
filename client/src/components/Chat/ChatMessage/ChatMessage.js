@@ -1,12 +1,7 @@
 import React from 'react';
 import {
-    Input,
+    Paper,
     OutlinedInput,
-    Button,
-    Popper,
-    Typography,
-    TextField,
-    ClickAwayListener,
     withStyles,
     List,
     Divider,
@@ -17,7 +12,6 @@ import { deepOrange } from '@material-ui/core/colors';
 import CardHeader from '@material-ui/core/CardHeader';
 import Covid from '../../../assets/images/coronavirus.png';
 
-// import "./style.css";
 
 const styles = (theme) => ({
     root: {
@@ -27,9 +21,9 @@ const styles = (theme) => ({
         borderColor: theme.palette.secondary.main,
     },
     container: {
-        minHeight: 550,
+        height: 550,
         width: "15vw",
-        // overflow: "auto",
+        overflow: "auto",
         backgroundColor: theme.palette.chat.paper.main,
         color: theme.palette.chat.main,
     },
@@ -45,7 +39,7 @@ const styles = (theme) => ({
     },
 });
 
-class ChatMessage extends React.Component {
+class Chat extends React.Component {
 
     componentDidMount = () => {
         var socket = window.io();
@@ -66,13 +60,11 @@ class ChatMessage extends React.Component {
             let newMessage = document.createElement("li");
             newMessage.innerHTML = msg;
             document.getElementById("messages").appendChild(newMessage);
-            window.scrollTo(0, document.body.scrollHeight)
+            messageContainer.scrollTo(0, document.body.scrollHeight)
             messageContainer.scrollTop = messageContainer.scrollHeight;
-
         })
+
     }
-
-
 
 
     render() {
@@ -88,9 +80,9 @@ class ChatMessage extends React.Component {
                 // subheader="filling text to see the placement"
                 />
                 <Divider classes={{ root: classes.divider }} />
-                <div className={(classes.container)} id="message-container">
+                <Paper className={(classes.container)} id="message-container" overflow="auto">
                     <List id="messages" />
-                </div>
+                </Paper>
                 <Divider classes={{ root: classes.divider }} />
                 <form id="chat-form" action="">
                     <OutlinedInput
@@ -105,4 +97,4 @@ class ChatMessage extends React.Component {
 
 }
 
-export default withStyles(styles)(ChatMessage);
+export default withStyles(styles)(Chat);

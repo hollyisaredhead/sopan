@@ -1,5 +1,6 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
+import auth0Client from './utils/Auth';
 import './App.css';
 
 import AppBarHS from "./components/AppBar/AppBar";
@@ -7,13 +8,17 @@ import LogIn from "./pages/LandingPage/LandingPage";
 import SignUp from "./pages/SignUp/SignUp";
 // import Homepage from "./pages/Rooms/Homepage/Homepage";
 import ViewingRoom from "./pages/Rooms/ViewingRoom/ViewingRoom";
+import Callback from "./components/Callback/Callback";
 
 import { createMuiTheme, ThemeProvider } from "@material-ui/core";
 
 export default () => {
 
+  console.log(auth0Client.getProfile());
+
   //hook for light vs dark mode
   const [darkMode, setDarkMode] = useState(true);
+  const [checkingSession, setCheckingSession] = useState(true)
 
   //initialize theme for material ui
   const theme = createMuiTheme({
@@ -27,7 +32,7 @@ export default () => {
       },
       video: {
         main: darkMode ? "#fafafa" : "#212121",
-        
+
       },
       chat: {
         main: darkMode ? "#212121" : "#fafafa",
@@ -87,6 +92,27 @@ export default () => {
     setDarkMode(!darkMode);
   };
 
+  async function checkSession() {
+    console.log(window.location.pathname)
+    if (window.location.pathname === '/viewingroom') {
+      setCheckingSession(false);
+      return;
+    }
+    try {
+      await auth0Client.silentAuth();
+      setCheckingSession(checkingSession);
+    } catch (err) {
+      if (err.error !== 'login_required') console.log(err.error);
+    }
+
+    setCheckingSession(false);
+  }
+
+  useEffect(() => {
+    checkSession();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
   return (
     <Router>
       <ThemeProvider theme={theme}>
@@ -95,6 +121,7 @@ export default () => {
           <Switch>
             <Route exact path={["/", "/login"]}><LogIn /></Route>
             <Route exact path="/signup"><SignUp /></Route>
+            <Route exact path='/callback' component={Callback} />
             {/* <Route exact path={["/homepage"]}><Homepage /></Route> */}
             <Route exact path={["/viewingroom"]}><ViewingRoom /></Route>
           </Switch>

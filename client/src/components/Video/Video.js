@@ -27,6 +27,7 @@ const styles = (theme) => ({
         position: "relative",
         border: "solid 1px",
         borderColor: theme.palette.primary.main,
+   
     },
     videoSearch: {
         height: 685,
@@ -36,10 +37,10 @@ const styles = (theme) => ({
         height: 200
     },
     searchContainer: {
-        height: 680,
-        overflow: "auto",
+        height: 576,
+        overflow: "scroll",
         backgroundColor: theme.palette.video.main,
-        position: "relative",
+        position: "center",
         border: "solid 1px",
         borderColor: theme.palette.primary.main,
     },
@@ -47,6 +48,9 @@ const styles = (theme) => ({
         // backgroundColor: theme.palette.chat.paper.main,
         color: theme.palette.chat.main,
     },
+    title: {
+        backgroundColor: "white"
+    }
 });
 
 class Video extends React.Component {
@@ -94,8 +98,8 @@ class Video extends React.Component {
                         <iframe title="vid" allow="autoplay; fullscreen" id="youtube" width="95%" height="95%"></iframe>
                     </Paper>
                 </Grid>
-                <Grid item xs={2} md={3} id="vidSearch">
-                    <Paper className={(classes.paper, classes.searchContainer)}>
+                <Grid item xs={12} md={3} id="vidSearch">
+                    <Paper className={(classes.paper)}>
                         <CardHeader className={classes.header}
                             title={
                                 <Typography variant="h6" component="h6">
@@ -103,6 +107,13 @@ class Video extends React.Component {
                                 </Typography>
                             }
                         />
+                        
+                        <form id="youtube" onSubmit={this.handleSubmit}>
+                            <input id="search-query"></input>
+                            <button id="search">SEARCH</button>
+                        </form>
+                    </Paper>
+                    <Paper className={(classes.paper, classes.searchContainer)}>
                         <YoutubeSearchList
                             handleSubmit={this.handleSubmit}
                             chooseVideo={this.chooseVideo}

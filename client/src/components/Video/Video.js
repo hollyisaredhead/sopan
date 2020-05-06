@@ -36,7 +36,7 @@ const styles = (theme) => ({
         height: 200
     },
     searchContainer: {
-        height: "90%",
+        height: 596,
         overflow: "auto",
         backgroundColor: theme.palette.video.main,
         position: "center",

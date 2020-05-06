@@ -42,6 +42,9 @@ const styles = (theme) => ({
     avatar: {
         backgroundColor: deepOrange[500],
     },
+    title: {
+        
+    }
 });
 
 class Chat extends React.Component {
@@ -81,7 +84,7 @@ class Chat extends React.Component {
                     avatar={
                         <Avatar alt="SoPan" src={Covid} className={classes.avatar}></Avatar>
                     }
-                    title="Chat"
+                             title="Chat"
                 // subheader="filling text to see the placement"
                 />
                 <Divider classes={{ root: classes.divider }} />

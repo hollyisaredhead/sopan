@@ -1,12 +1,14 @@
 #search {
- color:white;
- background-color: darkorange;
- border: 2px darkorange;
- border-radius: 3px;   
+ color:darkorange;
+ background-color: white;
+ border: 5px white;
+ height: 19.5px;
+ /* border-radius: 3px;    */
  font-weight: 600;
 }
 #search:hover{
     background-color: darkslategrey;
+    color: white;
 }
 
 #search-query{
@@ -14,16 +16,10 @@
     font-weight: 500;
 }
 
-#search-results{
-align-content: left;
-font-size: smaller;
-}
-
 .search-results-container{
     align-content: center;
 }
 #vid-thumbnail{
-    /* width: 100%; */
     padding-right: 10px;
 }
 
@@ -35,8 +31,4 @@ ul{
     margin-left: 2px;
     padding: 0px;
 
-}
-
-.MuiCardHeader-root{
-    font-size: 12px;
 }

@@ -67,6 +67,11 @@ export default () => {
           padding: 0,
         },
       },
+      MuiPaper: {
+        root: {
+          backgroundColor: "white",
+        },
+      },
       MuiCardHeader: {
         root: {
           paddingBottom: 10,

@@ -15,7 +15,7 @@ const styles = (theme) => ({
         flexGrow: 1,
     },
     paper: {
-        padding: theme.spacing(2),
+        // padding: theme.spacing(2),
         textAlign: 'center',
         backgroundColor: theme.palette.paper.main,
     },
@@ -37,14 +37,14 @@ const styles = (theme) => ({
     },
     searchContainer: {
         height: "90%",
-        overflow: "scroll",
+        overflow: "auto",
         backgroundColor: theme.palette.video.main,
         position: "center",
         border: "solid 1px",
         borderColor: theme.palette.primary.main,
     },
     header: {
-        // backgroundColor: theme.palette.chat.paper.main,
+        backgroundColor: theme.palette.chat.paper.main,
         color: theme.palette.chat.main,
     },
     title: {
@@ -102,14 +102,14 @@ class Video extends React.Component {
                             title={
                                 <Typography variant="h6" component="h6">
                                     Search
+                                    <form id="youtube" onSubmit={this.handleSubmit}>
+                                        <input id="search-query"></input>
+                                        <button id="search">SEARCH</button>
+                                    </form>
                                 </Typography>
                             }
                         />
 
-                        <form id="youtube" onSubmit={this.handleSubmit}>
-                            <input id="search-query"></input>
-                            <button id="search">SEARCH</button>
-                        </form>
                     </Paper>
                     <Paper className={(classes.paper, classes.searchContainer)}>
                         <YoutubeSearchList

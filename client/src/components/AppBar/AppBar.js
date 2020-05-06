@@ -8,6 +8,7 @@ import {
     MenuItem,
     IconButton,
     withStyles,
+    Typography,
 } from "@material-ui/core";
 
 import PersonIcon from '@material-ui/icons/Person';
@@ -34,8 +35,8 @@ const styles = (theme) => ({
         flexGrow: 1,
     },
     menuItem: {
-        backgroundColor: "#333333",
-        color: theme.palette.secondary.main,
+        backgroundColor: theme.palette.signUp.paper.main,
+        color: theme.palette.signUp.paper.secondary,
 
     },
     toolBar: {
@@ -124,7 +125,14 @@ class AppBarHs extends React.Component {
                                     className={classes.menuItem}
                                     onClick={() => { this.signOut() }}
                                 >
-                                    Logout
+                                    {
+                                        !auth0Client.isAuthenticated() &&
+                                        <Typography>Login</Typography>
+                                    }
+                                    {
+                                        auth0Client.isAuthenticated() &&
+                                        <Typography>Logout</Typography>
+                                    }
 
                                 </MenuItem>
                             </Menu>

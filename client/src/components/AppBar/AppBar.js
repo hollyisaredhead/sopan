@@ -15,9 +15,7 @@ import PersonIcon from '@material-ui/icons/Person';
 import Brightness3Icon from '@material-ui/icons/Brightness3';
 import Avatar from '@material-ui/core/Avatar';
 
-// import LoginBtn from '../../components/Login/LoginBtn';
 import auth0Client from "../../utils/Auth";
-
 
 
 const styles = (theme) => ({
@@ -91,7 +89,6 @@ class AppBarHs extends React.Component {
                                 aria-haspopup="true"
                                 onClick={this.handleClick}
                             >
-
                                 {
                                     !auth0Client.isAuthenticated() &&
                                     <PersonIcon />

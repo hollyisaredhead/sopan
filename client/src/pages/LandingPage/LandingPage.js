@@ -7,7 +7,7 @@ import {
 } from "@material-ui/core";
 
 import pandemicMap from "../../assets/images/pandemicMap3.svg"
-import SignUpBtn from "../../components/SignUp/SignUpBtn";
+import LoginBtn from "../../components/LoginBtn/LoginBtn";
 
 const useStyles = makeStyles((theme) => ({
     wrapper: {
@@ -78,7 +78,7 @@ export default function LandingPage() {
                                 <Typography variant="subtitle1" color="secondary">
                                     Share Videos, Music, and spend time with your friends and family.
                     </Typography>
-                                <SignUpBtn />
+                                <LoginBtn />
                             </Grid>
                         </Grid>
                     </Grid>

@@ -44,7 +44,7 @@ const styles = (theme) => ({
         backgroundColor: deepOrange[500],
     },
     title: {
-        
+
     }
 });
 
@@ -70,7 +70,7 @@ class Chat extends React.Component {
 
         socket.on('chat message', function (msg) {
             let newMessage = document.createElement("li");
-            newMessage.innerHTML = `${auth0Client.getProfile().nickname}: ${msg}`;
+            newMessage.innerText = `${auth0Client.getProfile().nickname}: ${msg}`;
             document.getElementById("messages").appendChild(newMessage);
             messageContainer.scrollTo(0, document.body.scrollHeight)
             messageContainer.scrollTop = messageContainer.scrollHeight;
@@ -88,7 +88,7 @@ class Chat extends React.Component {
                     avatar={
                         <Avatar alt="SoPan" src={Covid} className={classes.avatar}></Avatar>
                     }
-                             title="Chat"
+                    title="Chat"
                 // subheader="filling text to see the placement"
                 />
                 <Divider classes={{ root: classes.divider }} />

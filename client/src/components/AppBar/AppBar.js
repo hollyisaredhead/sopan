@@ -121,20 +121,24 @@ class AppBarHs extends React.Component {
                                 >
                                     Join A Room
                 </MenuItem> */}
-                                <MenuItem
-                                    className={classes.menuItem}
-                                    onClick={() => { this.signOut() }}
-                                >
-                                    {
-                                        !auth0Client.isAuthenticated() &&
+                                {
+                                    !auth0Client.isAuthenticated() &&
+                                    <MenuItem
+                                        className={classes.menuItem}
+                                        onClick={auth0Client.signIn}
+                                    >
                                         <Typography>Login</Typography>
-                                    }
-                                    {
-                                        auth0Client.isAuthenticated() &&
+                                    </MenuItem>
+                                }
+                                {
+                                    auth0Client.isAuthenticated() &&
+                                    <MenuItem
+                                        className={classes.menuItem}
+                                        onClick={() => { this.signOut() }}
+                                    >
                                         <Typography>Logout</Typography>
-                                    }
-
-                                </MenuItem>
+                                    </MenuItem>
+                                }
                             </Menu>
                         </Grid>
                     </Toolbar>

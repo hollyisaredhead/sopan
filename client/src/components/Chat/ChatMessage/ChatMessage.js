@@ -30,9 +30,8 @@ const styles = (theme) => ({
         color: theme.palette.chat.main,
     },
     listContain: {
-        alignItems: "flex-start",
-        alignContent: "flex-start",
-        justify: "flex-start",
+        textAlign: "left",
+        padding: 10,
     },
     divider: {
         backgroundColor: theme.palette.chat.paper.secondary,

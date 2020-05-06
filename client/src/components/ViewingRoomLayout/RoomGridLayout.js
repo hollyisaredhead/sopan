@@ -11,7 +11,7 @@ import {
 // import GroupAvatars from '../../components/Avatar/AvatarGroup';
 // import { Divider } from '@material-ui/core';
 
-import Chat from '../Chat/ChatMessage/ChatMessage';
+import Chat from '../Chat/Chat';
 import Video from '../../components/Video/Video';
 
 const useStyles = makeStyles((theme) => ({

@@ -5,14 +5,13 @@ import {
     withStyles,
     List,
     Divider,
+    CardHeader,
+    Avatar,
 } from "@material-ui/core";
 
-import Avatar from '@material-ui/core/Avatar';
 import { deepOrange } from '@material-ui/core/colors';
-import CardHeader from '@material-ui/core/CardHeader';
-import Covid from '../../../assets/images/coronavirus.png';
-
-import auth0Client from "../../../utils/Auth";
+import Covid from '../../assets/images/coronavirus.png';
+import auth0Client from "../../utils/Auth";
 
 
 const styles = (theme) => ({

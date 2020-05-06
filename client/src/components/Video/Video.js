@@ -23,11 +23,10 @@ const styles = (theme) => ({
         paddingTop: 20,
         height: 660,
         overflow: "auto",
-        backgroundColor: theme.palette.video.main,
         position: "relative",
         border: "solid 1px",
         borderColor: theme.palette.primary.main,
-   
+        backgroundColor: theme.palette.video.main,
     },
     videoSearch: {
         height: 685,
@@ -37,7 +36,7 @@ const styles = (theme) => ({
         height: 200
     },
     searchContainer: {
-        height: 565,
+        height: "90%",
         overflow: "auto",
         backgroundColor: theme.palette.video.main,
         position: "center",
@@ -69,7 +68,6 @@ class Video extends React.Component {
             youtubeVid.setAttribute('src', link);
         });
 
-
     }
 
     handleSubmit = (e) => {
@@ -92,7 +90,7 @@ class Video extends React.Component {
     render() {
         const { classes } = this.props;
         return (
-            <Grid id="video" item xs={10} spacing={1} container>
+            <Grid id="video" height={100} item xs={10} spacing={1} container>
                 <Grid item xs={9} overflow="auto" >
                     <Paper className={(classes.videoStyling)}>
                         <iframe title="vid" allow="autoplay; fullscreen" id="youtube" width="95%" height="95%"></iframe>
@@ -105,9 +103,9 @@ class Video extends React.Component {
                                 <Typography variant="h6" component="h6">
                                     Search
                                     <form id="youtube" onSubmit={this.handleSubmit}>
-                            <input id="search-query"></input>
-                            <button id="search">SEARCH</button>
-                        </form>
+                                        <input id="search-query"></input>
+                                        <button id="search">SEARCH</button>
+                                    </form>
                                 </Typography>
                             }
                         />

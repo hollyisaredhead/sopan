@@ -36,11 +36,7 @@ const styles = (theme) => ({
         height: 200
     },
     searchContainer: {
-<<<<<<< HEAD
         height: 596,
-=======
-        height: 565,
->>>>>>> 22cb2b9aeb6d2c2b33bfb543b2fb7ce61f74b442
         overflow: "auto",
         backgroundColor: theme.palette.video.main,
         position: "center",
@@ -50,6 +46,8 @@ const styles = (theme) => ({
     header: {
         backgroundColor: theme.palette.chat.paper.main,
         color: theme.palette.chat.main,
+        borderColor: theme.palette.primary.main,
+        border: "solid 1px",
     },
     title: {
         backgroundColor: "white"

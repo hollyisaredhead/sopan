@@ -5,7 +5,6 @@ import './App.css';
 
 import AppBarHS from "./components/AppBar/AppBar";
 import LogIn from "./pages/LandingPage/LandingPage";
-import SignUp from "./pages/SignUp/SignUp";
 // import Homepage from "./pages/Rooms/Homepage/Homepage";
 import ViewingRoom from "./pages/Rooms/ViewingRoom/ViewingRoom";
 import Callback from "./components/Callback/Callback";
@@ -31,7 +30,6 @@ export default () => {
       },
       video: {
         main: darkMode ? "#fafafa" : "#212121",
-
       },
       chat: {
         main: darkMode ? "#212121" : "#fafafa",
@@ -41,13 +39,14 @@ export default () => {
           secondary: darkMode ? "#9e9e9e" : "#0288d1",
         },
       },
-      tertiary: { main: "#FEB2D0" },
-      info: { main: "#a6a6a6" },
       signUp: {
         main: "#f57c00",
         font: "#fafafa",
+        paper: {
+          main: darkMode ? "#fafafa" : "#212121",
+          secondary: darkMode ? "#f57c00" : "#0288d1",
+        },
       },
-
     },
     typography: {
       fontFamily: '"Quicksand", "Helvetica", "Arial", sans-serif',
@@ -57,6 +56,12 @@ export default () => {
       fontWeightMedium: 500,
     },
     overrides: {
+      MuiList: {
+        list: {
+          alignItems: "flex-start",
+          alignContent: "flex-start",
+        },
+      },
       MuiMenu: {
         list: {
           padding: 0,
@@ -107,11 +112,10 @@ export default () => {
   return (
     <Router>
       <ThemeProvider theme={theme}>
-        <AppBarHS toggleTheme={toggleTheme} style={{ margin: 0 }} />
+        <AppBarHS toggleTheme={toggleTheme} />
         <div className="App">
           <Switch>
             <Route exact path={["/", "/login"]}><LogIn /></Route>
-            <Route exact path="/signup"><SignUp /></Route>
             <Route exact path='/callback' component={Callback} />
             {/* <Route exact path={["/homepage"]}><Homepage /></Route> */}
             <SecuredRoute exact path={["/viewingroom"]} checkingSession={checkingSession} component={ViewingRoom}></SecuredRoute>

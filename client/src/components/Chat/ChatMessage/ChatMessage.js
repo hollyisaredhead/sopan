@@ -29,6 +29,11 @@ const styles = (theme) => ({
         backgroundColor: theme.palette.chat.paper.main,
         color: theme.palette.chat.main,
     },
+    listContain: {
+        alignItems: "flex-start",
+        alignContent: "flex-start",
+        justify: "flex-start",
+    },
     divider: {
         backgroundColor: theme.palette.chat.paper.secondary,
     },
@@ -83,7 +88,7 @@ class Chat extends React.Component {
                 />
                 <Divider classes={{ root: classes.divider }} />
                 <Paper className={(classes.container)} id="message-container" overflow="auto">
-                    <List id="messages" />
+                    <List classes={{ root: classes.listContain }} id="messages" />
                 </Paper>
                 <Divider classes={{ root: classes.divider }} />
                 <form id="chat-form" action="">

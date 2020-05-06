@@ -18,10 +18,10 @@ class YoutubeSearchList extends React.Component {
         const { classes } = this.props;
         return (
             <div>
-                <form id="youtube" onSubmit={this.props.handleSubmit}>
+                {/* <form id="youtube" onSubmit={this.props.handleSubmit}>
                     <input id="search-query"></input>
                     <button id="search">SEARCH</button>
-                </form>
+                </form> */}
                 <div id="search-results-container" className={classes.resultStyling}>
                     <ul id="search-results">
                         {this.props.results.map(vid => (

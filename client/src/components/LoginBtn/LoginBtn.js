@@ -1,10 +1,11 @@
 import React from 'react';
-import Button from '@material-ui/core/Button';
-import Typography from '@material-ui/core/Typography';
-import { makeStyles } from '@material-ui/core/styles';
+import {
+    makeStyles,
+    Button,
+    Typography,
+} from '@material-ui/core';
 
 import auth0Client from "../../utils/Auth";
-
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -21,7 +22,6 @@ const useStyles = makeStyles((theme) => ({
         color: theme.palette.signUp.main,
     }
 }));
-
 
 
 export default function FormDialog() {

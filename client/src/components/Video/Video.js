@@ -88,13 +88,13 @@ class Video extends React.Component {
     render() {
         const { classes } = this.props;
         return (
-            <Grid id="video" item xs={10} spacing={1} container>
+            <Grid id="video" height={100} item xs={10} spacing={1} container>
                 <Grid item xs={9} overflow="auto" >
                     <Paper className={(classes.videoStyling)}>
                         <iframe title="vid" allow="autoplay; fullscreen" id="youtube" width="95%" height="95%"></iframe>
                     </Paper>
                 </Grid>
-                <Grid item xs={2} md={3} id="vidSearch">
+                <Grid item xs={2} lg={3} id="vidSearch">
                     <Paper className={(classes.paper, classes.searchContainer)}>
                         <CardHeader className={classes.header}
                             title={

@@ -57,6 +57,9 @@ class Chat extends React.Component {
 
         function sendMessage(e) {
             e.preventDefault();
+            if (message.value === "")
+                return;
+
             socket.emit('chat message', message.value);
             message.value = '';
             return false;

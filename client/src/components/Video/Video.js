@@ -23,11 +23,10 @@ const styles = (theme) => ({
         paddingTop: 20,
         height: 660,
         overflow: "auto",
-        backgroundColor: theme.palette.video.main,
         position: "relative",
         border: "solid 1px",
         borderColor: theme.palette.primary.main,
-
+        backgroundColor: theme.palette.video.main,
     },
     videoSearch: {
         height: 685,
@@ -37,7 +36,7 @@ const styles = (theme) => ({
         height: 200
     },
     searchContainer: {
-        height: 576,
+        height: "90%",
         overflow: "scroll",
         backgroundColor: theme.palette.video.main,
         position: "center",
@@ -68,7 +67,6 @@ class Video extends React.Component {
             const youtubeVid = document.getElementById("youtube");
             youtubeVid.setAttribute('src', link);
         });
-
 
     }
 

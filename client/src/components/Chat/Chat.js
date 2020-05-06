@@ -10,9 +10,9 @@ import {
 import Avatar from '@material-ui/core/Avatar';
 import { deepOrange } from '@material-ui/core/colors';
 import CardHeader from '@material-ui/core/CardHeader';
-import Covid from '../../../assets/images/coronavirus.png';
+import Covid from '../../assets/images/coronavirus.png';
 
-import auth0Client from "../../../utils/Auth";
+import auth0Client from "../../utils/Auth";
 
 
 const styles = (theme) => ({

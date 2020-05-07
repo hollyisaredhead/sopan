@@ -11,8 +11,6 @@ import {
 
 import { deepOrange } from '@material-ui/core/colors';
 import Covid from '../../assets/images/coronavirus.png';
-import auth0Client from "../../utils/Auth";
-
 
 const styles = (theme) => ({
     root: {
@@ -49,35 +47,6 @@ const styles = (theme) => ({
 
 class Chat extends React.Component {
 
-    componentDidMount = () => {
-        var socket = window.io();
-        const chatForm = document.getElementById('chat-form');
-        const message = document.getElementById('m');
-        const messageContainer = document.getElementById('message-container');
-
-        chatForm.addEventListener("submit", sendMessage);
-
-        function sendMessage(e) {
-            e.preventDefault();
-            if (message.value === "")
-                return;
-
-            socket.emit('chat message', message.value);
-            message.value = '';
-            return false;
-        }
-
-        socket.on('chat message', function (msg) {
-            let newMessage = document.createElement("li");
-            newMessage.innerText = `${auth0Client.getProfile().nickname}: ${msg}`;
-            document.getElementById("messages").appendChild(newMessage);
-            messageContainer.scrollTo(0, document.body.scrollHeight)
-            messageContainer.scrollTop = messageContainer.scrollHeight;
-        })
-
-    }
-
-
     render() {
         const { classes } = this.props;
 
@@ -95,7 +64,7 @@ class Chat extends React.Component {
                     <List classes={{ root: classes.listContain }} id="messages" />
                 </Paper>
                 <Divider classes={{ root: classes.divider }} />
-                <form id="chat-form" action="">
+                <form id="chat-form" action="" onSubmit={this.props.sendMessage}>
                     <OutlinedInput
                         id="m"
                         autoComplete="off"

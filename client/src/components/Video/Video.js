@@ -21,29 +21,30 @@ const styles = (theme) => ({
     },
     videoStyling: {
         paddingTop: 20,
-        height: 660,
+        height: "70vh",
         overflow: "auto",
         position: "relative",
         border: "solid 1px",
         borderColor: theme.palette.primary.main,
         backgroundColor: theme.palette.video.main,
     },
-    videoSearch: {
-        height: 685,
-        overflow: "auto",
-    },
-    videoControlHeight: {
-        height: 200
-    },
+    // videoSearch: {
+    //     height: 685,
+    //     overflow: "auto",
+    // },
+    // videoControlHeight: {
+    //     height: 200
+    // },
     searchContainer: {
-        height: 596,
+        height: "61vh",
         overflow: "auto",
-        backgroundColor: theme.palette.video.main,
         position: "center",
         border: "solid 1px",
         borderColor: theme.palette.primary.main,
+        backgroundColor: theme.palette.video.main,
     },
     header: {
+
         backgroundColor: theme.palette.chat.paper.main,
         color: theme.palette.chat.main,
         borderColor: theme.palette.primary.main,

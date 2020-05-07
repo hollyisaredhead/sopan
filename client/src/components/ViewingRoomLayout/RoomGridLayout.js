@@ -11,6 +11,7 @@ import {
 // import FullscreenExitIcon from '@material-ui/icons/FullscreenExit';
 import GroupAvatars from '../../components/Avatar/AvatarGroup';
 import { Divider } from '@material-ui/core';
+import AvatarGroup from '@material-ui/lab/AvatarGroup';
 
 import Chat from '../Chat/Chat';
 import Video from '../../components/Video/Video';
@@ -89,10 +90,8 @@ export default function RoomLayout() {
         return false;
     }
 
-
-
     useEffect(() => {
-        socket.emit('new user', auth0Client.getProfile().nickname);
+        socket.emit('new user', auth0Client.getProfile().picture, auth0Client.getProfile().nickname);
 
         socket.on('new user', function (currentUsers) {
             updateUsers(currentUsers);
@@ -101,15 +100,17 @@ export default function RoomLayout() {
         socket.on('update users', function (currentUsers) {
             updateUsers(currentUsers);
         });
+
+        console.log(auth0Client.profile)
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 
     const updateUsers = (currentUsers) => {
-        const userDiv = document.getElementById("users")
+        const avatarDiv = document.getElementById("userAvatars")
 
-        let userString = "";
-        currentUsers.forEach(user => userString += `<p>${user.name}</p>`);
-        userDiv.innerHTML = userString;
+        let avatarString = "";
+        currentUsers.forEach(user => avatarString += `<div class="MuiAvatar-root MuiAvatar-circle"><img alt=${user.name} src=${user.avatar} class="MuiAvatar-img"></div>`);
+        avatarDiv.innerHTML = avatarString;
 
     }
     return (
@@ -141,7 +142,8 @@ export default function RoomLayout() {
                         </Grid> */}
                         <Grid id="groupInRoom">Who is in the Room
                             <Box >
-                                <GroupAvatars />
+                                {/* <GroupAvatars currentUsers={currentUsers} /> */}
+                                <AvatarGroup id="userAvatars" max={10}></AvatarGroup>
                             </Box>
                         </Grid>
                     </Paper>
@@ -152,6 +154,6 @@ export default function RoomLayout() {
             </div>
 
 
-        </div >
+        </div>
     );
 }

@@ -10,7 +10,7 @@ import ViewingRoom from "./pages/Rooms/ViewingRoom/ViewingRoom";
 import Callback from "./components/Callback/Callback";
 import SecuredRoute from "./components/SecuredRoute/SecuredRoute";
 
-import { createMuiTheme, ThemeProvider, withTheme } from "@material-ui/core";
+import { createMuiTheme, ThemeProvider } from "@material-ui/core";
 
 export default () => {
 
@@ -76,7 +76,7 @@ export default () => {
         root: {
           paddingBottom: 10,
           paddingTop: 10
-          
+
         },
       },
       MuiTypography: {
@@ -88,7 +88,7 @@ export default () => {
           fontSize: "12pt",
           fontWeight: "600"
         },
-     
+
       },
       MuiExpansionPanelSummary: {
         root: {

@@ -61,15 +61,7 @@ class Video extends React.Component {
     };
 
     componentDidMount = () => {
-        this.socket = window.io();
-
         this.searchQuery = document.getElementById("search-query");
-
-        this.socket.on('video', function (link) {
-            const youtubeVid = document.getElementById("youtube");
-            youtubeVid.setAttribute('src', link);
-        });
-
     }
 
     handleSubmit = (e) => {
@@ -80,14 +72,6 @@ class Video extends React.Component {
             this.setState({ results: res.data.items });
         });
     }
-
-
-    chooseVideo = (e) => {
-        let videoId = e.currentTarget.getAttribute("vid-id");
-        this.socket.emit("video", "https://www.youtube.com/embed/" + videoId + "?autoplay=1");
-    }
-
-
 
     render() {
         const { classes } = this.props;
@@ -116,7 +100,7 @@ class Video extends React.Component {
                     <Paper className={(classes.paper, classes.searchContainer)}>
                         <YoutubeSearchList
                             handleSubmit={this.handleSubmit}
-                            chooseVideo={this.chooseVideo}
+                            chooseVideo={this.props.chooseVideo}
                             results={this.state.results} />
                     </Paper>
                 </Grid>

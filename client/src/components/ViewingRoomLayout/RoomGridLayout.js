@@ -100,8 +100,6 @@ export default function RoomLayout() {
         socket.on('update users', function (currentUsers) {
             updateUsers(currentUsers);
         });
-
-        console.log(auth0Client.profile)
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 

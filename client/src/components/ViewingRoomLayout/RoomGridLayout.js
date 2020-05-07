@@ -18,9 +18,9 @@ import auth0Client from "../../utils/Auth";
 
 const useStyles = makeStyles((theme) => ({
     root: {
-        minHeight: "100vh",
-        maxHeight: "100%",
-        width: "100%",
+        // minHeight: "100vh",
+        // maxHeight: "100%",
+        // width: "100%",
         flexGrow: 1,
         backgroundColor: theme.palette.paper.main
     },
@@ -33,7 +33,9 @@ const useStyles = makeStyles((theme) => ({
     //     marginLeft: 5,
     // },
     videoControlHeight: {
-        height: 200
+        height: 200,
+        width: "99%",
+
     },
     wrapper: {
         backgroundColor: theme.palette.paper.main,

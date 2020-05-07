@@ -111,13 +111,13 @@ class AppBarHs extends React.Component {
                                     onClick={this.handleClose}
                                 >
                                     Create New Room
-                </MenuItem>
+                </MenuItem> */}
                                 <MenuItem
                                     className={classes.menuItem}
                                     onClick={this.handleClose}
                                 >
-                                    Join A Room
-                </MenuItem> */}
+                                    Profile
+                </MenuItem>
                                 {
                                     !auth0Client.isAuthenticated() &&
                                     <MenuItem

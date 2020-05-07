@@ -36,7 +36,7 @@ const styles = (theme) => ({
     //     height: 200
     // },
     searchContainer: {
-        height: "61vh",
+        height: "63vh",
         overflow: "auto",
         position: "center",
         border: "solid 1px",

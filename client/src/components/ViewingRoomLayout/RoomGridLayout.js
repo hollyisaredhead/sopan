@@ -3,13 +3,14 @@ import {
     makeStyles,
     Paper,
     Grid,
+    Box,
 } from '@material-ui/core';
 
 // import VolumeSlider from '../../components/Volume/Volume';
 // import FullscreenIcon from '@material-ui/icons/Fullscreen';
 // import FullscreenExitIcon from '@material-ui/icons/FullscreenExit';
-// import GroupAvatars from '../../components/Avatar/AvatarGroup';
-// import { Divider } from '@material-ui/core';
+import GroupAvatars from '../../components/Avatar/AvatarGroup';
+import { Divider } from '@material-ui/core';
 
 import Chat from '../Chat/Chat';
 import Video from '../../components/Video/Video';
@@ -31,6 +32,9 @@ const useStyles = makeStyles((theme) => ({
     // container: {
     //     marginLeft: 5,
     // },
+    videoControlHeight: {
+        height: 200
+    },
     wrapper: {
         backgroundColor: theme.palette.paper.main,
     },
@@ -116,9 +120,9 @@ export default function RoomLayout() {
                     </Paper>
                 </Grid>
 
-                {/* <Grid id="video-control" xs={12}>
+                <Grid id="video-control" xs={12}>
                     <Paper className={(classes.paper, classes.videoControlHeight)}>
-                        <Grid id="volume-screen">Volume and fullscreen controls
+                        {/* <Grid id="volume-screen">Volume and fullscreen controls
                             <div style={{ width: '100%' }}>
                                 <Box display="flex" p={1} bgcolor="background.paper">
                                     <Box p={1} flexGrow={1} >
@@ -132,14 +136,14 @@ export default function RoomLayout() {
                                     </Box>
                                 </Box>
                             </div>
-                        </Grid>
+                        </Grid> */}
                         <Grid id="groupInRoom">Who is in the Room
                             <Box >
                                 <GroupAvatars />
                             </Box>
                         </Grid>
                     </Paper>
-                </Grid> */}
+                </Grid>
 
             </Grid>
             <div id="users">

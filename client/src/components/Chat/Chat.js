@@ -20,8 +20,8 @@ const styles = (theme) => ({
         borderColor: theme.palette.secondary.main,
     },
     container: {
-        height: "58vh",
-        width: "15vw",
+        height: "61vh",
+        width: "16vw",
         overflow: "auto",
         backgroundColor: theme.palette.chat.paper.main,
         color: theme.palette.chat.main,
@@ -40,9 +40,10 @@ const styles = (theme) => ({
     avatar: {
         backgroundColor: deepOrange[500],
     },
-    title: {
-
-    }
+    noPadding: {
+        marginTop: 10,
+        padding: 5,
+    },
 });
 
 class Chat extends React.Component {
@@ -66,6 +67,7 @@ class Chat extends React.Component {
                 <Divider classes={{ root: classes.divider }} />
                 <form id="chat-form" action="" onSubmit={this.props.sendMessage}>
                     <OutlinedInput
+                        classes={{ input: classes.noPadding }}
                         id="m"
                         autoComplete="off"
                         className={(classes.root)}

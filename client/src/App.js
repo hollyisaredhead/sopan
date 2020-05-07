@@ -135,6 +135,7 @@ export default () => {
             <Route exact path={["/", "/login"]}><LogIn /></Route>
             <Route exact path='/callback' component={Callback} />
             {/* <Route exact path={["/homepage"]}><Homepage /></Route> */}
+            {/* <SecuredRoute exact path={["/homepage"]} checkingSession={checkingSession} component={Homepage}></SecuredRoute> */}
             <SecuredRoute exact path={["/viewingroom"]} checkingSession={checkingSession} component={ViewingRoom}></SecuredRoute>
           </Switch>
         </div>

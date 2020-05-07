@@ -20,7 +20,7 @@ const styles = (theme) => ({
         borderColor: theme.palette.secondary.main,
     },
     container: {
-        height: 550,
+        height: "58vh",
         width: "15vw",
         overflow: "auto",
         backgroundColor: theme.palette.chat.paper.main,

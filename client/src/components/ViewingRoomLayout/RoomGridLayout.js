@@ -22,6 +22,7 @@ const useStyles = makeStyles((theme) => ({
         // minHeight: "100vh",
         // maxHeight: "100%",
         // width: "100%",
+        height: "100vh",
         flexGrow: 1,
         backgroundColor: theme.palette.paper.main
     },
@@ -34,7 +35,7 @@ const useStyles = makeStyles((theme) => ({
     //     marginLeft: 5,
     // },
     videoControlHeight: {
-        height: 200,
+        height: 100,
         width: "99%",
 
     },
@@ -47,6 +48,9 @@ const useStyles = makeStyles((theme) => ({
         position: "relative",
         border: "solid 1px",
         borderColor: theme.palette.primary.main,
+    },
+    avatarGroup: {
+        justifyContent: "center",
     },
 }));
 
@@ -141,7 +145,7 @@ export default function RoomLayout() {
                         <Grid id="groupInRoom">Who is in the Room
                             <Box >
                                 {/* <GroupAvatars currentUsers={currentUsers} /> */}
-                                <AvatarGroup id="userAvatars" max={10}></AvatarGroup>
+                                <AvatarGroup className={classes.avatarGroup} id="userAvatars" max={10}></AvatarGroup>
                             </Box>
                         </Grid>
                     </Paper>

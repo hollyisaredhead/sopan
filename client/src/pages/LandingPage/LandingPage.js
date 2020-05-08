@@ -25,10 +25,6 @@ const useStyles = makeStyles((theme) => ({
         width: "auto",
         backgroundColor: theme.palette.paper.main,
     },
-    subWrapper2: {
-        minHeight: `80vh`,
-        width: "100%",
-    },
     description: {
         marginTop: "auto",
     },
@@ -38,6 +34,12 @@ const useStyles = makeStyles((theme) => ({
     getStarted: {
         textDecoration: "none",
     },
+    img: {
+        margin: 'auto',
+        display: 'block',
+        maxWidth: '100%',
+        maxHeight: '100%',
+    },
 }));
 
 export default function LandingPage() {
@@ -46,21 +48,21 @@ export default function LandingPage() {
     return (
         <div className={classes.wrapper}>
             <div className={classes.subWrapper1}>
-                <Container maxWidth="lg">
+                <Container >
                     <Grid
                         className={classes.container}
                         item
                         container
+                        // direction="column"
                         alignItems="center"
                         justify={"center"}
-                        spacing={3}
                         xs={12}
                         md={10}
                     >
-                        <Grid item xs={12} md={4}>
-                            <img height="550" width="550" src={pandemicMap} alt="" />
+                        <Grid item xs={12} md={5}>
+                            <img className={classes.img} src={pandemicMap} alt="" />
                         </Grid>
-                        <Grid item container justify="center" xs={12} md={8}>
+                        <Grid item container justify="center" xs={12} md={6}>
                             <Grid
                                 item
                                 sm={12}
@@ -74,7 +76,7 @@ export default function LandingPage() {
                       </Typography>
                                 </Grid>
                             </Grid>
-                            <Grid item sm={5}>
+                            <Grid item sm={6}>
                                 <Typography variant="subtitle1" color="secondary">
                                     Share Videos, Music, and spend time with your friends and family.
                     </Typography>

@@ -4,13 +4,8 @@ import {
     Paper,
     Grid,
     Box,
+    Typography,
 } from '@material-ui/core';
-
-// import VolumeSlider from '../../components/Volume/Volume';
-// import FullscreenIcon from '@material-ui/icons/Fullscreen';
-// import FullscreenExitIcon from '@material-ui/icons/FullscreenExit';
-import GroupAvatars from '../../components/Avatar/AvatarGroup';
-import { Divider } from '@material-ui/core';
 import AvatarGroup from '@material-ui/lab/AvatarGroup';
 
 import Chat from '../Chat/Chat';
@@ -22,7 +17,7 @@ const useStyles = makeStyles((theme) => ({
         // minHeight: "100vh",
         // maxHeight: "100%",
         // width: "100%",
-        height: "100vh",
+        height: "105vh",
         flexGrow: 1,
         backgroundColor: theme.palette.paper.main
     },
@@ -37,13 +32,14 @@ const useStyles = makeStyles((theme) => ({
     videoControlHeight: {
         height: 100,
         width: "99%",
-
+        border: "solid 1px",
+        backgroundColor: theme.palette.video.main,
+        borderColor: theme.palette.primary.main,
     },
     wrapper: {
         backgroundColor: theme.palette.paper.main,
     },
     chatContainer: {
-        // height: "71vh",
         backgroundColor: theme.palette.video.main,
         position: "relative",
         border: "solid 1px",
@@ -51,6 +47,10 @@ const useStyles = makeStyles((theme) => ({
     },
     avatarGroup: {
         justifyContent: "center",
+    },
+    avatarText: {
+        paddingBottom: 10,
+        color: theme.palette.chat.main,
     },
 }));
 
@@ -127,35 +127,16 @@ export default function RoomLayout() {
 
                 <Grid id="video-control" xs={12}>
                     <Paper className={(classes.paper, classes.videoControlHeight)}>
-                        {/* <Grid id="volume-screen">Volume and fullscreen controls
-                            <div style={{ width: '100%' }}>
-                                <Box display="flex" p={1} bgcolor="background.paper">
-                                    <Box p={1} flexGrow={1} >
-                                        <VolumeSlider />
-                                    </Box>
-                                    <Box p={1} >
-                                        <FullscreenIcon />
-                                    </Box>
-                                    <Box p={1} >
-                                        <FullscreenExitIcon />
-                                    </Box>
-                                </Box>
-                            </div>
-                        </Grid> */}
-                        <Grid id="groupInRoom">Who is in the Room
+                        <Grid id="groupInRoom">
+                            <Typography className={classes.avatarText}>Who is in the Room</Typography>
                             <Box >
                                 {/* <GroupAvatars currentUsers={currentUsers} /> */}
-                                <AvatarGroup className={classes.avatarGroup} id="userAvatars" max={10}></AvatarGroup>
+                                <AvatarGroup className={classes.avatarGroup} id="userAvatars" max={15} ></AvatarGroup>
                             </Box>
                         </Grid>
                     </Paper>
                 </Grid>
-
             </Grid>
-            <div id="users">
-            </div>
-
-
         </div>
     );
 }

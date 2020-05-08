@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import {
     makeStyles,
     Paper,
@@ -87,8 +87,6 @@ export default function RoomLayout() {
 
         if (message.value === "")
             return;
-
-        console.log(user)
 
         socket.emit('chat message', message.value, user.nickname);
         messageContainer.scrollTo(0, document.body.scrollHeight)

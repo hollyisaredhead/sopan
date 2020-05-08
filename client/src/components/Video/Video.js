@@ -46,6 +46,7 @@ const styles = (theme) => ({
     title: {
         backgroundColor: "white"
     }
+    
 });
 
 class Video extends React.Component {

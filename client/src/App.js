@@ -82,16 +82,26 @@ export default () => {
 
         },
       },
+      MuiGrid: {
+        container: {
+          paddingTop: 15,
+          height: "auto"
+        },
+      },
       MuiTypography: {
         body1: {
-          fontSize: "2",
-          fontWeight: "600"
+          fontSize: "1",
+          fontWeight: "550"
         },
         body2: {
           fontSize: "12pt",
           fontWeight: "600"
         },
-
+        h6: {
+          fontSize: "12pt",
+          fontWeight: "600",
+          padding: "7px"
+        }
       },
       MuiExpansionPanelSummary: {
         root: {

@@ -9,16 +9,25 @@ module.exports = {
   //     .then(dbModel => res.json(dbModel))
   //     .catch(err => res.status(422).json(err));
   // },
-  findById: function(req, res) {
+  findOne: function (req, res) {
+    console.log("finding")
+    console.log(req.params)
     db.User
-      .findById(req.params.id)
+      .findOne({ email: req.params.id })
       .then(dbModel => res.json(dbModel))
       .catch(err => res.status(422).json(err));
   },
-  create: function(req, res) {
+  create: function (req, res) {
+    console.log("creating")
     db.User
       .create(req.body)
       .then(dbModel => res.json(dbModel))
       .catch(err => res.status(422).json(err));
-  }
+  },
+  update: function (req, res) {
+    db.User
+      .findOneAndUpdate({ email: req.params.id }, { $set: { avatar: req.body.avatar, nickname: req.body.nickname } })
+      .then(dbModel => res.json(dbModel))
+      .catch(err => res.status(422).json(err));
+  },
 };

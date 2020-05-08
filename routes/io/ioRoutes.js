@@ -25,15 +25,16 @@ module.exports = (io) => {
             io.emit('video', link);
         });
 
-        socket.on('new user', function (img, name) {
+        socket.on('new user', function (img, name, email) {
             let newUser = {
                 _id: socket.id,
                 avatar: img,
-                name: name
+                name: name,
+                email: email
             };
 
             currentUsers.push(newUser);
-            io.emit('new user', currentUsers);
+            io.emit('new user', currentUsers, newUser);
         });
 
     });

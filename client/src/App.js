@@ -9,10 +9,13 @@ import LogIn from "./pages/LandingPage/LandingPage";
 import ViewingRoom from "./pages/Rooms/ViewingRoom/ViewingRoom";
 import Callback from "./components/Callback/Callback";
 import SecuredRoute from "./components/SecuredRoute/SecuredRoute";
+import ProfilePage from "./pages/ProfilePage/ProfilePage";
+import API from "./utils/API";
 
 import { createMuiTheme, ThemeProvider } from "@material-ui/core";
 
 export default () => {
+  const [user, setUser] = useState({});
 
   //hook for light vs dark mode
   const [darkMode, setDarkMode] = useState(true);
@@ -119,30 +122,58 @@ export default () => {
     setDarkMode(!darkMode);
   };
 
-  async function checkSession() {
-    if (window.location.pathname === '/viewingroom') {
-      setCheckingSession(false);
-      return;
-    }
-    try {
-      await auth0Client.silentAuth();
-      setCheckingSession(false);
-    } catch (err) {
-      if (err.error !== 'login_required') console.log(err.error);
-    }
 
-    setCheckingSession(false);
-  }
 
   useEffect(() => {
-    checkSession();
+    async function checkSession() {
+      if (window.location.pathname === '/viewingroom') {
+        setCheckingSession(false);
+        return;
+      }
+      try {
+        await auth0Client.silentAuth();
+        setCheckingSession(false);
+      } catch (err) {
+        if (err.error !== 'login_required') console.log(err.error);
+      }
+
+      setCheckingSession(false);
+    }
+
+    checkSession().then(() => {
+      if (auth0Client.isAuthenticated()) {
+        API.getUser(auth0Client.profile.email)
+          .then(result => {
+            if (!result.data) {
+              let newUser;
+              newUser = {
+                avatar: auth0Client.getProfile().picture,
+                nickname: auth0Client.getProfile().nickname,
+                email: auth0Client.getProfile().email
+              }
+              console.log("creating")
+              API.createUser(newUser).then((result) => {
+                console.log(result.data)
+                setUser(newUser);
+              })
+            }
+            else {
+              setUser(result.data);
+            }
+          })
+          .catch(err => console.log(err));
+      }
+    }
+
+    );
+
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (
     <Router>
       <ThemeProvider theme={theme}>
-        <AppBarHS toggleTheme={toggleTheme} />
+        <AppBarHS toggleTheme={toggleTheme} user={user} />
         <div className="App">
           <Switch>
             <Route exact path={["/", "/login"]}><LogIn /></Route>
@@ -150,6 +181,7 @@ export default () => {
             {/* <Route exact path={["/homepage"]}><Homepage /></Route> */}
             {/* <SecuredRoute exact path={["/homepage"]} checkingSession={checkingSession} component={Homepage}></SecuredRoute> */}
             <SecuredRoute exact path={["/viewingroom"]} checkingSession={checkingSession} component={ViewingRoom}></SecuredRoute>
+            <SecuredRoute exact path={["/profile"]} checkingSession={checkingSession} user={user} component={ProfilePage}></SecuredRoute>
           </Switch>
         </div>
       </ThemeProvider>

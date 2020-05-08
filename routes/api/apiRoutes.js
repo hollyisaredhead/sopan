@@ -1,6 +1,7 @@
 const jwt = require('express-jwt');
 const jwksRsa = require('jwks-rsa');
 const userController = require("../../controllers/userController");
+const router = require("express").Router();
 
 const checkJwt = jwt({
   secret: jwksRsa.expressJwtSecret({
@@ -18,16 +19,21 @@ const checkJwt = jwt({
 
 
 module.exports = (app) => {
-  app.post("/user", checkJwt, (req, res) => {
-    userController.create(req.data);
-  })
+  app.post("/api/users", userController.create)
 
-  // app.get("/api/user/:id", (req, res) => {
-  //   userController.findById;
-  // });
+  app.get("/api/users/:id", userController.findOne);
+
+  app.put("/api/users/:id", checkJwt, userController.update);
 
   // app.post("/api/user/create", (req, res) => {
   //   userController.create;
   // });
 }
 
+// router.route("/api/user")
+// .post(userController.create);
+
+
+// router.route("/api/user/:id")
+// .get(userController.findOne)
+// .put(userController.update);

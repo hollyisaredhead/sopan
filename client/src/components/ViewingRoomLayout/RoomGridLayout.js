@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import {
     makeStyles,
     Paper,
@@ -8,6 +8,7 @@ import {
 } from '@material-ui/core';
 import AvatarGroup from '@material-ui/lab/AvatarGroup';
 
+import API from "../../utils/API";
 import Chat from '../Chat/Chat';
 import Video from '../../components/Video/Video';
 import auth0Client from "../../utils/Auth";
@@ -68,7 +69,7 @@ socket.on('chat message', function (msg, user) {
 });
 
 
-
+var user = {};
 
 export default function RoomLayout() {
 
@@ -87,7 +88,9 @@ export default function RoomLayout() {
         if (message.value === "")
             return;
 
-        socket.emit('chat message', message.value, auth0Client.getProfile().nickname);
+        console.log(user)
+
+        socket.emit('chat message', message.value, user.nickname);
         messageContainer.scrollTo(0, document.body.scrollHeight)
         messageContainer.scrollTop = messageContainer.scrollHeight;
         message.value = '';
@@ -95,7 +98,25 @@ export default function RoomLayout() {
     }
 
     useEffect(() => {
-        socket.emit('new user', auth0Client.getProfile().picture, auth0Client.getProfile().nickname);
+        API.getUser(auth0Client.getProfile().email)
+            .then(result => {
+                if (!result.data) {
+                    user = {
+                        avatar: auth0Client.getProfile().picture,
+                        nickname: auth0Client.getProfile().nickname,
+                        email: auth0Client.getProfile().email
+                    }
+                    socket.emit('new user', user.avatar, user.nickname, user.email);
+                }
+                else {
+                    user = result.data;
+                    socket.emit('new user', user.avatar, user.nickname, user.email);
+                }
+            })
+            .catch(err => console.log(err));
+
+
+
 
         socket.on('new user', function (currentUsers) {
             updateUsers(currentUsers);

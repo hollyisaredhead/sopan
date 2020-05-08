@@ -63,9 +63,9 @@ class Video extends React.Component {
         e.preventDefault();
         let query = this.searchQuery.value;
         API.youtubeSearch(query).then(res => {
-            console.log(res)
             this.setState({ results: res.data.items });
         });
+        this.searchQuery.value = '';
     }
 
     render() {

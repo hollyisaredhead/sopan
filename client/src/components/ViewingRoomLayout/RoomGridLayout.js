@@ -142,7 +142,7 @@ export default function RoomLayout() {
                                 </Box>
                             </div>
                         </Grid> */}
-                        <Grid id="groupInRoom">Who is in the Room
+                        <Grid id="groupInRoom"> <h3>Who is in the Room</h3>
                             <Box >
                                 {/* <GroupAvatars currentUsers={currentUsers} /> */}
                                 <AvatarGroup className={classes.avatarGroup} id="userAvatars" max={10}></AvatarGroup>

@@ -21,7 +21,7 @@ const styles = (theme) => ({
     },
     videoStyling: {
         paddingTop: 20,
-        height: "70vh",
+        height: 500,
         overflow: "auto",
         position: "relative",
         border: "solid 1px",
@@ -36,7 +36,7 @@ const styles = (theme) => ({
     //     height: 200
     // },
     searchContainer: {
-        height: "63vh",
+        height: 435,
         overflow: "auto",
         position: "center",
         border: "solid 1px",
@@ -53,6 +53,7 @@ const styles = (theme) => ({
     title: {
         backgroundColor: "white"
     }
+    
 });
 
 class Video extends React.Component {

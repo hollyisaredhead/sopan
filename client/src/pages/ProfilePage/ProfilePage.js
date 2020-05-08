@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import {
     Grid,
     makeStyles,
@@ -9,6 +9,8 @@ import {
     TextField,
     Button,
 } from "@material-ui/core";
+import API from '../../utils/API';
+import auth0Client from "../../utils/Auth";
 
 
 const useStyles = makeStyles((theme) => ({
@@ -70,6 +72,29 @@ const useStyles = makeStyles((theme) => ({
 export default function CenteredGrid() {
     const classes = useStyles();
 
+    useEffect(() => {
+
+        refreshUser();
+
+    }, [])
+
+    const refreshUser = () => {
+        let usernameDiv = document.getElementById("username");
+        API.getUser(auth0Client.getProfile().email)
+            .then((result) => {
+                usernameDiv.textContent = `Username: ${result.data.nickname}`
+            })
+            .catch(err => console.log(err));
+    }
+
+    const updateUsername = () => {
+        let newUsernameDiv = document.getElementById("new-username");
+        API.updateUser(auth0Client.getProfile().email, { nickname: newUsernameDiv.value })
+            .then(refreshUser)
+            .then(() => { window.location.href = "/viewingroom" })
+            .catch(err => console.log(err));
+    }
+
     return (
         <div className={classes.root}>
             <div className={classes.subWrapper1}>
@@ -109,13 +134,13 @@ export default function CenteredGrid() {
                                 Change Profile Picture
                                 </Typography>
                             <Grid className={classes.textInput} >
-                                <Typography className={classes.typography}>
+                                <Typography id="username" className={classes.typography}>
                                     Username:
                                 </Typography>
                                 <TextField
                                     // variant="outlined"
                                     fullWidth
-                                    id="Username"
+                                    id="new-username"
                                     label="New username"
                                     name="Username"
                                     autoComplete="Username"
@@ -127,7 +152,7 @@ export default function CenteredGrid() {
                                 alignItems="center"
                                 justify={"center"}
                             >
-                                <Button variant="contained" className={classes.btn}>Save</Button>
+                                <Button variant="contained" className={classes.btn} onClick={updateUsername}>Save</Button>
                             </Grid>
                         </Paper>
                     </Grid>

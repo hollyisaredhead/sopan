@@ -13,8 +13,8 @@ export default {
     return axios.get("/api/users/" + id);
   },
 
-  updateUser: function (id) {
-    return axios.put("/api/users/" + id);
+  updateUser: function (id, nickname) {
+    return axios.put("/api/users/" + id, nickname);
   }
 
   // // Gets all users

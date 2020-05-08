@@ -47,6 +47,9 @@ export default () => {
           secondary: darkMode ? "#f57c00" : "#0288d1",
         },
       },
+      header: {
+        primary: { main: darkMode ? "#212121" : "#0288d1" },
+      },
     },
     typography: {
       fontFamily: '"Quicksand", "Helvetica", "Arial", sans-serif',

@@ -16,6 +16,7 @@ import Brightness3Icon from '@material-ui/icons/Brightness3';
 import Avatar from '@material-ui/core/Avatar';
 
 import auth0Client from "../../utils/Auth";
+import API from "../../utils/API";
 
 
 const styles = (theme) => ({
@@ -52,6 +53,7 @@ class AppBarHs extends React.Component {
         anchorEl: null
     };
 
+
     // handle opening and closing of dropdown
     handleClick = (event) => {
         // setAnchorEl(event.currentTarget);
@@ -65,11 +67,22 @@ class AppBarHs extends React.Component {
 
     signOut = () => {
         auth0Client.signOut();
-        this.props.history.replace('/');
     };
+
+    goToProfile = () => {
+        window.location.href = "/profile";
+    }
 
     render() {
         const { classes } = this.props;
+
+        let avatarIcon;
+        if (this.props.user) {
+            avatarIcon = <Avatar alt={this.props.user.nickname} src={this.props.user.avatar} />
+        }
+        else {
+            avatarIcon = <PersonIcon />
+        }
 
         return (
             <div className={classes.root}>
@@ -95,7 +108,7 @@ class AppBarHs extends React.Component {
                                 }
                                 {
                                     auth0Client.isAuthenticated() &&
-                                    <Avatar alt={auth0Client.getProfile().nickname} src={auth0Client.getProfile().picture} />
+                                    avatarIcon
                                 }
 
                             </Button>
@@ -112,14 +125,19 @@ class AppBarHs extends React.Component {
                                 >
                                     Create New Room
                 </MenuItem> */}
-                                <MenuItem
-                                    className={classes.menuItem}
-                                    onClick={this.handleClose}
-                                >
-                                    Profile
-                </MenuItem>
+                                {
+                                    auth0Client.isAuthenticated() &&
+                                    <MenuItem
+                                        className={classes.menuItem}
+                                        onClick={this.goToProfile}
+                                    >
+                                        Profile
+                                    </MenuItem>
+                                }
+
                                 {
                                     !auth0Client.isAuthenticated() &&
+
                                     <MenuItem
                                         className={classes.menuItem}
                                         onClick={auth0Client.signIn}

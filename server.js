@@ -22,7 +22,7 @@ if (process.env.NODE_ENV === "production") {
 
 require("./routes")(app, io);
 
-mongoose.connect(process.env.MONGODB_URI);
+mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost/sopan");
 
 http.listen(PORT, function () {
     console.log('listening on *:' + PORT);

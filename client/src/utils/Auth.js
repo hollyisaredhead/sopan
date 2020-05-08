@@ -9,7 +9,7 @@ class Auth {
             clientID: 'UlmTKS3bSNjG0v1pOs3Q0R7ZdBiIwtXG',
             redirectUri: (process.env.NODE_ENV === 'production') ? 'https://so-pan.herokuapp.com/callback' : 'http://localhost:3000/callback',
             responseType: 'id_token',
-            scope: 'openid profile'
+            scope: 'openid email profile'
         });
 
         this.getProfile = this.getProfile.bind(this);

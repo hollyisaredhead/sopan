@@ -1,5 +1,6 @@
 import React from 'react';
 import {
+    Box,
     Paper,
     OutlinedInput,
     withStyles,
@@ -20,7 +21,7 @@ const styles = (theme) => ({
         borderColor: theme.palette.secondary.main,
     },
     container: {
-        height: "61vh",
+        height: 420,
         width: "16vw",
         overflow: "auto",
         backgroundColor: theme.palette.chat.paper.main,

@@ -1,5 +1,6 @@
 import React from "react";
 import {
+    Box,
     Grid,
     Paper,
     withStyles,
@@ -21,22 +22,15 @@ const styles = (theme) => ({
     },
     videoStyling: {
         paddingTop: 20,
-        height: "70vh",
+        height: 500,
         overflow: "auto",
         position: "relative",
         border: "solid 1px",
         borderColor: theme.palette.primary.main,
         backgroundColor: theme.palette.video.main,
     },
-    // videoSearch: {
-    //     height: 685,
-    //     overflow: "auto",
-    // },
-    // videoControlHeight: {
-    //     height: 200
-    // },
     searchContainer: {
-        height: "63vh",
+        height: 435,
         overflow: "auto",
         position: "center",
         border: "solid 1px",
@@ -44,7 +38,6 @@ const styles = (theme) => ({
         backgroundColor: theme.palette.video.main,
     },
     header: {
-
         backgroundColor: theme.palette.chat.paper.main,
         color: theme.palette.chat.main,
         borderColor: theme.palette.primary.main,
@@ -53,6 +46,7 @@ const styles = (theme) => ({
     title: {
         backgroundColor: "white"
     }
+    
 });
 
 class Video extends React.Component {

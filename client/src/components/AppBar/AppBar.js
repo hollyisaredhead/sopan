@@ -142,7 +142,7 @@ class AppBarHs extends React.Component {
                                         className={classes.menuItem}
                                         onClick={auth0Client.signIn}
                                     >
-                                        <Typography>Login</Typography>
+                                        Login
                                     </MenuItem>
                                 }
                                 {
@@ -151,7 +151,7 @@ class AppBarHs extends React.Component {
                                         className={classes.menuItem}
                                         onClick={() => { this.signOut() }}
                                     >
-                                        <Typography>Logout</Typography>
+                                        Logout
                                     </MenuItem>
                                 }
                             </Menu>

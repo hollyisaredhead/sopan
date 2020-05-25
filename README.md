@@ -1,4 +1,4 @@
-# sopan
+# SoPan
 
 SoPan is a place for people to hang out with their friends online. People can use SoPan to watch YouTube videos and chat with their friends in real time. Created in the midst of the Covid-19 pandemic, SoPan is a great way to keep in touch with friends while avoiding physical contact with others.
 

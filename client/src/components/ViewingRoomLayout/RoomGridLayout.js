@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import {
     makeStyles,
     Paper,
@@ -7,6 +7,7 @@ import {
     Typography,
 } from '@material-ui/core';
 import AvatarGroup from '@material-ui/lab/AvatarGroup';
+import Avatar from '@material-ui/core/Avatar';
 
 import API from "../../utils/API";
 import Chat from '../Chat/Chat';
@@ -75,6 +76,8 @@ export default function RoomLayout() {
 
     const classes = useStyles();
 
+    const [avatars, setAvatars] = useState([]);
+
     const chooseVideo = (e) => {
         let videoId = e.currentTarget.getAttribute("vid-id");
         socket.emit("video", "https://www.youtube.com/embed/" + videoId + "?autoplay=1");
@@ -127,12 +130,10 @@ export default function RoomLayout() {
     }, []);
 
     const updateUsers = (currentUsers) => {
-        const avatarDiv = document.getElementById("userAvatars")
+        let currentAvatars = [];
 
-        let avatarString = "";
-        currentUsers.forEach(user => avatarString += `<div class="MuiAvatar-root MuiAvatar-circle"><img alt=${user.name} src=${user.avatar} class="MuiAvatar-img"></div>`);
-        avatarDiv.innerHTML = avatarString;
-
+        currentUsers.forEach(user => currentAvatars.push(user.avatar));
+        setAvatars(currentAvatars);
     }
     return (
         <div className={classes.root}>
@@ -150,7 +151,11 @@ export default function RoomLayout() {
                             <Typography className={classes.avatarText}>Who is in the Room</Typography>
                             <Box >
                                 {/* <GroupAvatars currentUsers={currentUsers} /> */}
-                                <AvatarGroup className={classes.avatarGroup} id="userAvatars" max={15} ></AvatarGroup>
+                                <AvatarGroup className={classes.avatarGroup} id="userAvatars" max={15} avatars={avatars}>
+                                    {avatars.map(avatar => (
+                                        <Avatar alt="" src={avatar} />
+                                    ))}
+                                </AvatarGroup>
                             </Box>
                         </Grid>
                     </Paper>

@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import {
     Grid,
     makeStyles,
@@ -72,6 +72,9 @@ const useStyles = makeStyles((theme) => ({
 export default function CenteredGrid() {
     const classes = useStyles();
 
+    const [username, setUsername] = useState();
+    const [avatar, setAvatar] = useState();
+
     useEffect(() => {
 
         refreshUser();
@@ -79,13 +82,10 @@ export default function CenteredGrid() {
     }, [])
 
     const refreshUser = () => {
-        let usernameDiv = document.getElementById("username");
-        let avatarDiv = document.getElementById("avatar-div");
-
         API.getUser(auth0Client.getProfile().email)
             .then((result) => {
-                usernameDiv.textContent = `Username: ${result.data.nickname}`
-                avatarDiv.innerHTML = `<div class="MuiAvatar-root MuiAvatar-circle" style="margin: 10px; width: 70px; height: 70px;";><img alt=${result.data.nickname} src=${result.data.avatar} class="MuiAvatar-img"></div>`
+                setUsername(result.data.nickname);
+                setAvatar(result.data.avatar);
             })
             .catch(err => console.log(err));
     }
@@ -125,7 +125,7 @@ export default function CenteredGrid() {
                     <Grid item xs={5}>
                         <Paper className={(classes.paper)}>
                             <div id="avatar-div" className={classes.avatar}>
-                                <Avatar id="avatar" alt="" src=""
+                                <Avatar id="avatar" alt={username} src={avatar}
                                     style={{
                                         margin: "10px",
                                         width: "70px",
@@ -135,7 +135,7 @@ export default function CenteredGrid() {
                             </div>
                             <Grid className={classes.textInput} >
                                 <Typography id="username" className={classes.typography}>
-                                    Username:
+                                    Username: {username}
                                 </Typography>
                                 <TextField
                                     // variant="outlined"

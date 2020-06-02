@@ -5,7 +5,7 @@ import './App.css';
 
 import AppBarHS from "./components/AppBar/AppBar";
 import LogIn from "./pages/LandingPage/LandingPage";
-// import Homepage from "./pages/Rooms/Homepage/Homepage";
+import Homepage from "./pages/Rooms/Homepage/Homepage";
 import ViewingRoom from "./pages/Rooms/ViewingRoom/ViewingRoom";
 import Callback from "./components/Callback/Callback";
 import SecuredRoute from "./components/SecuredRoute/SecuredRoute";
@@ -179,7 +179,7 @@ export default () => {
             <Route exact path={["/", "/login"]}><LogIn /></Route>
             <Route exact path='/callback' component={Callback} />
             {/* <Route exact path={["/homepage"]}><Homepage /></Route> */}
-            {/* <SecuredRoute exact path={["/homepage"]} checkingSession={checkingSession} component={Homepage}></SecuredRoute> */}
+            <SecuredRoute exact path={["/homepage"]} checkingSession={checkingSession} component={Homepage}></SecuredRoute>
             <SecuredRoute exact path={["/viewingroom"]} checkingSession={checkingSession} component={ViewingRoom}></SecuredRoute>
             <SecuredRoute exact path={["/profile"]} checkingSession={checkingSession} component={ProfilePage}></SecuredRoute>
           </Switch>

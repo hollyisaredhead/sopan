@@ -15,6 +15,9 @@ import ButtonBase from '@material-ui/core/ButtonBase';
 import AddToQueueIcon from '@material-ui/icons/AddToQueue';
 import ExitToAppIcon from '@material-ui/icons/ExitToApp';
 
+import CreateRoom from '../../../components/Rooms/CreateRoom';
+import JoinRoom from '../../../components/Rooms/JoinRoom';
+
 const useStyles = makeStyles((theme) => ({
     root: {
         minHeight: "100vh",
@@ -83,7 +86,7 @@ export default function CenteredGrid() {
                                 Welcome!
                       </Typography>
                             <Typography variant="subtitle1" color="secondary">
-                                It's never been easier to join or start a start a room with your friends.
+                                It's never been easier to join or start a room with your friends.
                     </Typography>
                         </Grid>
                         <Grid item xs={5}>
@@ -102,7 +105,8 @@ export default function CenteredGrid() {
                                 >
                                     <Grid item xs={3}>
                                         <Button className={classes.btn}>
-                                            <AddToQueueIcon fontSize="large" />
+                                            {/* <AddToQueueIcon fontSize="large" /> */}
+                                            <CreateRoom />
                                         </Button>
                                     </Grid>
                                     <Grid item xs={9}>
@@ -131,7 +135,8 @@ export default function CenteredGrid() {
                                 >
                                     <Grid item xs={3}>
                                         <Button className={classes.btn}>
-                                            <ExitToAppIcon fontSize="large" />
+                                            {/* <ExitToAppIcon fontSize="large" /> */}
+                                            <JoinRoom />
                                         </Button>
                                     </Grid>
                                     <Grid item xs={9}>

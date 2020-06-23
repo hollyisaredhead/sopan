@@ -1,10 +1,10 @@
 import React from 'react';
 import RoomLayout from '../../../components/ViewingRoomLayout/RoomGridLayout';
 
-function ViewingRoom() {
+function ViewingRoom(props) {
     return (
         <>
-            <RoomLayout />
+            <RoomLayout {...props} />
         </>
     );
 }

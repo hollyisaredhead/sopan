@@ -20,9 +20,23 @@ export default function FormDialog() {
         setOpen(false);
     };
 
+    const handleSubmit = () => {
+
+        const joinName = document.getElementById("createName")
+        if (joinName !== "") {
+            console.log(joinName.value)
+            console.log("name", joinName.value)
+
+            setOpen(false);
+
+            window.location = "/viewingroom/" + joinName.value;
+        }
+
+    }
+
     return (
         <div>
-            <Button variant="outlined" color="primary" onClick={handleClickOpen}>
+            <Button variant="outlined" color="black" onClick={handleClickOpen}>
                 <ExitToAppIcon fontSize="large" />
             </Button>
             <Dialog open={open} onClose={handleClose} aria-labelledby="form-dialog-title">
@@ -32,27 +46,27 @@ export default function FormDialog() {
                         Join a room and start watching with your friends
           </DialogContentText>
                     <TextField
-                        autoFocus
+                        // autoFocus
                         margin="dense"
-                        id="name"
+                        id="joinName"
                         label="Room Name"
                         type="roomName"
                         fullWidth
                     />
                     <TextField
-                        autoFocus
+                        // autoFocus
                         margin="dense"
-                        id="name"
+                        id="joinPW"
                         label="Password"
                         type="password"
                         fullWidth
                     />
                 </DialogContent>
                 <DialogActions>
-                    <Button onClick={handleClose} color="primary">
+                    <Button onClick={handleClose} color="black">
                         Cancel
           </Button>
-                    <Button onClick={handleClose} color="primary">
+                    <Button onClick={handleSubmit} color="black">
                         Join Room
           </Button>
                 </DialogActions>

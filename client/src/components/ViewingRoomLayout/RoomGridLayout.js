@@ -72,7 +72,9 @@ socket.on('chat message', function (msg, user) {
 
 var user = {};
 
-export default function RoomLayout() {
+export default function RoomLayout(props) {
+    const room = window.location.pathname.slice(13)
+
 
     const classes = useStyles();
 
@@ -80,7 +82,7 @@ export default function RoomLayout() {
 
     const chooseVideo = (e) => {
         let videoId = e.currentTarget.getAttribute("vid-id");
-        socket.emit("video", "https://www.youtube.com/embed/" + videoId + "?autoplay=1");
+        socket.emit("video", "https://www.youtube.com/embed/" + videoId + "?autoplay=1", room);
     }
 
     const sendMessage = (e) => {
@@ -91,7 +93,7 @@ export default function RoomLayout() {
         if (message.value === "")
             return;
 
-        socket.emit('chat message', message.value, user.nickname);
+        socket.emit('chat message', message.value, user.nickname, room);
         messageContainer.scrollTo(0, document.body.scrollHeight)
         messageContainer.scrollTop = messageContainer.scrollHeight;
         message.value = '';
@@ -99,6 +101,10 @@ export default function RoomLayout() {
     }
 
     useEffect(() => {
+        props.setRoom(room);
+
+        socket.emit('join room', room);
+
         API.getUser(auth0Client.getProfile().email)
             .then(result => {
                 if (!result.data) {

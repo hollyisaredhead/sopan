@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import Button from '@material-ui/core/Button';
 import TextField from '@material-ui/core/TextField';
 import Dialog from '@material-ui/core/Dialog';
@@ -8,9 +8,13 @@ import DialogContentText from '@material-ui/core/DialogContentText';
 import DialogTitle from '@material-ui/core/DialogTitle';
 
 import AddToQueueIcon from '@material-ui/icons/AddToQueue';
+import { PromiseProvider } from 'mongoose';
+import { createGenerateClassName } from '@material-ui/core';
 
-export default function FormDialog() {
-    const [open, setOpen] = React.useState(false);
+export default function FormDialog(props) {
+    const [open, setOpen] = useState(false);
+
+    console.log("create", props.room)
 
     const handleClickOpen = () => {
         setOpen(true);
@@ -20,9 +24,23 @@ export default function FormDialog() {
         setOpen(false);
     };
 
+    const handleSubmit = () => {
+
+        const createName = document.getElementById("createName")
+        if (createName !== "") {
+            console.log(createName.value)
+            console.log("name", createName.value)
+
+            setOpen(false);
+
+            window.location = "/viewingroom/" + createName.value;
+        }
+
+    }
+
     return (
         <div>
-            <Button variant="outlined" color="primary" onClick={handleClickOpen}>
+            <Button variant="outlined" color="black" onClick={handleClickOpen}>
                 <AddToQueueIcon fontSize="large" />
             </Button>
             <Dialog open={open} onClose={handleClose} aria-labelledby="form-dialog-title">
@@ -30,31 +48,33 @@ export default function FormDialog() {
                 <DialogContent>
                     <DialogContentText>
                         Create a viewing room to watch with your friends
-          </DialogContentText>
+                    </DialogContentText>
+
                     <TextField
-                        autoFocus
+                        // autoFocus
                         margin="dense"
-                        id="name"
+                        id="createName"
                         label="Room Name"
-                        type="roomName"
+                        type="text"
                         fullWidth
                     />
                     <TextField
-                        autoFocus
+                        // autoFocus
                         margin="dense"
-                        id="name"
+                        id="createPW"
                         label="Password"
                         type="password"
                         fullWidth
                     />
+
                 </DialogContent>
                 <DialogActions>
-                    <Button onClick={handleClose} color="primary">
+                    <Button onClick={handleClose} color="black">
                         Cancel
-          </Button>
-                    <Button onClick={handleClose} color="primary">
+                    </Button>
+                    <Button onClick={handleSubmit} color="black">
                         Create Room
-          </Button>
+                    </Button>
                 </DialogActions>
             </Dialog>
         </div>

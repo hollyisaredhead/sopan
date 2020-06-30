@@ -111,13 +111,19 @@ export default function RoomLayout(props) {
                     user = {
                         avatar: auth0Client.getProfile().picture,
                         nickname: auth0Client.getProfile().nickname,
-                        email: auth0Client.getProfile().email
+                        email: auth0Client.getProfile().email,
+                        room: room
                     }
-                    socket.emit('new user', user.avatar, user.nickname, user.email);
+                    socket.emit('new user', user.avatar, user.nickname, user.email, user.room);
                 }
                 else {
-                    user = result.data;
-                    socket.emit('new user', user.avatar, user.nickname, user.email);
+                    user = {
+                        avatar: result.data.avatar,
+                        nickname: result.data.nickname,
+                        email: result.data.email,
+                        room: room
+                    };
+                    socket.emit('new user', user.avatar, user.nickname, user.email, user.room);
                 }
             })
             .catch(err => console.log(err));
@@ -138,7 +144,10 @@ export default function RoomLayout(props) {
     const updateUsers = (currentUsers) => {
         let currentAvatars = [];
 
-        currentUsers.forEach(user => currentAvatars.push(user.avatar));
+        currentUsers.forEach(user => {
+            if (user.room === room)
+                currentAvatars.push(user.avatar)
+        });
         setAvatars(currentAvatars);
     }
     return (

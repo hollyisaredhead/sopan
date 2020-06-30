@@ -29,12 +29,13 @@ module.exports = (io) => {
             io.to(room).emit('video', link);
         });
 
-        socket.on('new user', function (img, name, email) {
+        socket.on('new user', function (img, name, email, room) {
             let newUser = {
                 _id: socket.id,
                 avatar: img,
                 name: name,
-                email: email
+                email: email,
+                room: room
             };
 
             currentUsers.push(newUser);

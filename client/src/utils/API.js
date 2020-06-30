@@ -15,6 +15,16 @@ export default {
 
   updateUser: function (id, nickname) {
     return axios.put("/api/users/" + id, nickname);
+  },
+
+  createRoom: function (roomData) {
+    console.log(roomData);
+    return axios.post("/api/rooms/create", roomData);
+  },
+
+  joinRoom: function (roomData) {
+    console.log(roomData);
+    return axios.post("/api/rooms/join", roomData);
   }
 
   // // Gets all users

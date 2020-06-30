@@ -9,6 +9,8 @@ import DialogTitle from '@material-ui/core/DialogTitle';
 
 import ExitToAppIcon from '@material-ui/icons/ExitToApp';
 
+import API from '../../utils/API';
+
 export default function FormDialog() {
     const [open, setOpen] = React.useState(false);
 
@@ -22,14 +24,30 @@ export default function FormDialog() {
 
     const handleSubmit = () => {
 
-        const joinName = document.getElementById("createName")
-        if (joinName !== "") {
+        const joinName = document.getElementById("joinName");
+        const joinPW = document.getElementById("joinPW");
+        if (joinName !== "" && joinPW !== "") {
             console.log(joinName.value)
             console.log("name", joinName.value)
 
+            let roomToFind = {
+                roomName: joinName.value,
+                password: joinPW.value
+            };
+
+            API.joinRoom(roomToFind)
+                .then(result => {
+                    if (result.data === "authentication successful") {
+                        window.location = "/viewingroom/" + joinName.value;
+                    }
+                    else
+                        console.log("incorrect room information")
+                })
+                .catch(err => console.log(err));
+
             setOpen(false);
 
-            window.location = "/viewingroom/" + joinName.value;
+            // window.location = "/viewingroom/" + joinName.value;
         }
 
     }

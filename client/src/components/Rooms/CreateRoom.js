@@ -11,6 +11,8 @@ import AddToQueueIcon from '@material-ui/icons/AddToQueue';
 import { PromiseProvider } from 'mongoose';
 import { createGenerateClassName } from '@material-ui/core';
 
+import API from "../../utils/API";
+
 export default function FormDialog(props) {
     const [open, setOpen] = useState(false);
 
@@ -27,13 +29,26 @@ export default function FormDialog(props) {
     const handleSubmit = () => {
 
         const createName = document.getElementById("createName")
-        if (createName !== "") {
-            console.log(createName.value)
+        const createPW = document.getElementById("createPW");
+        if (createName !== "" && createPW != "") {
             console.log("name", createName.value)
+            console.log("pw", createPW.value)
 
-            setOpen(false);
+            let newRoom = {
+                roomName: createName.value,
+                password: createPW.value
+            };
 
-            window.location = "/viewingroom/" + createName.value;
+            console.log(newRoom)
+
+            API.createRoom(newRoom)
+                .then(result => {
+                    console.log(result.data);
+                    setOpen(false);
+
+                    window.location = "/viewingroom/" + createName.value;
+                })
+                .catch(err => console.log(err));
         }
 
     }

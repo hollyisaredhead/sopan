@@ -16,7 +16,7 @@ import { createMuiTheme, ThemeProvider } from "@material-ui/core";
 
 export default () => {
   const [user, setUser] = useState({});
-  const [room, setRoom] = useState('111');
+  const [room, setRoom] = useState('NONE');
 
   //hook for light vs dark mode
   const [darkMode, setDarkMode] = useState(true);
@@ -167,8 +167,6 @@ export default () => {
     }
 
     );
-
-    console.log(room)
 
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);

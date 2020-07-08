@@ -8,11 +8,13 @@ import {
 } from '@material-ui/core';
 import AvatarGroup from '@material-ui/lab/AvatarGroup';
 import Avatar from '@material-ui/core/Avatar';
+import { useHistory } from 'react-router-dom';
 
 import API from "../../utils/API";
 import Chat from '../Chat/Chat';
 import Video from '../../components/Video/Video';
 import auth0Client from "../../utils/Auth";
+import { useLocation } from 'react-router-dom';
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -73,8 +75,10 @@ socket.on('chat message', function (msg, user) {
 var user = {};
 
 export default function RoomLayout(props) {
-    const room = window.location.pathname.slice(13)
+    let location = useLocation();
+    let history = useHistory();
 
+    const room = (location.state != undefined) ? location.state.room : "NONE";
 
     const classes = useStyles();
 
@@ -101,44 +105,51 @@ export default function RoomLayout(props) {
     }
 
     useEffect(() => {
-        props.setRoom(room);
 
-        socket.emit('join room', room);
+        if (room === "NONE") {
+            history.push("/homepage");
+        }
+        else {
+            props.setRoom(room);
 
-        API.getUser(auth0Client.getProfile().email)
-            .then(result => {
-                if (!result.data) {
-                    user = {
-                        avatar: auth0Client.getProfile().picture,
-                        nickname: auth0Client.getProfile().nickname,
-                        email: auth0Client.getProfile().email,
-                        room: room
+            socket.emit('join room', room);
+
+            API.getUser(auth0Client.getProfile().email)
+                .then(result => {
+                    if (!result.data) {
+                        user = {
+                            avatar: auth0Client.getProfile().picture,
+                            nickname: auth0Client.getProfile().nickname,
+                            email: auth0Client.getProfile().email,
+                            room: room
+                        }
+                        socket.emit('new user', user.avatar, user.nickname, user.email, user.room);
                     }
-                    socket.emit('new user', user.avatar, user.nickname, user.email, user.room);
-                }
-                else {
-                    user = {
-                        avatar: result.data.avatar,
-                        nickname: result.data.nickname,
-                        email: result.data.email,
-                        room: room
-                    };
-                    socket.emit('new user', user.avatar, user.nickname, user.email, user.room);
-                }
+                    else {
+                        user = {
+                            avatar: result.data.avatar,
+                            nickname: result.data.nickname,
+                            email: result.data.email,
+                            room: room
+                        };
+                        socket.emit('new user', user.avatar, user.nickname, user.email, user.room);
+                    }
+                })
+                .catch(err => console.log(err));
+
+
+
+
+            socket.on('new user', function (currentUsers) {
+                updateUsers(currentUsers);
             })
-            .catch(err => console.log(err));
 
+            socket.on('update users', function (currentUsers) {
+                updateUsers(currentUsers);
+            });
+            // eslint-disable-next-line react-hooks/exhaustive-deps  
+        }
 
-
-
-        socket.on('new user', function (currentUsers) {
-            updateUsers(currentUsers);
-        })
-
-        socket.on('update users', function (currentUsers) {
-            updateUsers(currentUsers);
-        });
-        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 
     const updateUsers = (currentUsers) => {

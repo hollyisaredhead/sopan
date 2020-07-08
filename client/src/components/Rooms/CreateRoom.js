@@ -6,6 +6,7 @@ import DialogActions from '@material-ui/core/DialogActions';
 import DialogContent from '@material-ui/core/DialogContent';
 import DialogContentText from '@material-ui/core/DialogContentText';
 import DialogTitle from '@material-ui/core/DialogTitle';
+import { useHistory } from 'react-router-dom';
 
 import AddToQueueIcon from '@material-ui/icons/AddToQueue';
 import { PromiseProvider } from 'mongoose';
@@ -14,9 +15,9 @@ import { createGenerateClassName } from '@material-ui/core';
 import API from "../../utils/API";
 
 export default function FormDialog(props) {
-    const [open, setOpen] = useState(false);
+    let history = useHistory();
 
-    console.log("create", props.room)
+    const [open, setOpen] = useState(false);
 
     const handleClickOpen = () => {
         setOpen(true);
@@ -31,22 +32,19 @@ export default function FormDialog(props) {
         const createName = document.getElementById("createName")
         const createPW = document.getElementById("createPW");
         if (createName !== "" && createPW != "") {
-            console.log("name", createName.value)
-            console.log("pw", createPW.value)
-
             let newRoom = {
                 roomName: createName.value,
                 password: createPW.value
             };
-
-            console.log(newRoom)
-
             API.createRoom(newRoom)
                 .then(result => {
                     console.log(result.data);
                     setOpen(false);
 
-                    window.location = "/viewingroom/" + createName.value;
+                    history.push({
+                        pathname: "/viewingroom/" + createName.value,
+                        state: { room: createName.value }
+                    });
                 })
                 .catch(err => console.log(err));
         }

@@ -60,7 +60,6 @@ const useStyles = makeStyles((theme) => ({
 
 export default function CenteredGrid(props) {
     const classes = useStyles();
-    console.log("homepage", props.room)
 
     return (
         <div className={classes.root}>

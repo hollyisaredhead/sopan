@@ -6,12 +6,15 @@ import DialogActions from '@material-ui/core/DialogActions';
 import DialogContent from '@material-ui/core/DialogContent';
 import DialogContentText from '@material-ui/core/DialogContentText';
 import DialogTitle from '@material-ui/core/DialogTitle';
+import { useHistory } from 'react-router-dom';
 
 import ExitToAppIcon from '@material-ui/icons/ExitToApp';
 
 import API from '../../utils/API';
 
 export default function FormDialog() {
+    let history = useHistory();
+
     const [open, setOpen] = React.useState(false);
 
     const handleClickOpen = () => {
@@ -27,8 +30,6 @@ export default function FormDialog() {
         const joinName = document.getElementById("joinName");
         const joinPW = document.getElementById("joinPW");
         if (joinName !== "" && joinPW !== "") {
-            console.log(joinName.value)
-            console.log("name", joinName.value)
 
             let roomToFind = {
                 roomName: joinName.value,
@@ -38,7 +39,10 @@ export default function FormDialog() {
             API.joinRoom(roomToFind)
                 .then(result => {
                     if (result.data === "authentication successful") {
-                        window.location = "/viewingroom/" + joinName.value;
+                        history.push({
+                            pathname: "/viewingroom/" + joinName.value,
+                            state: { room: joinName.value }
+                        });
                     }
                     else
                         console.log("incorrect room information")

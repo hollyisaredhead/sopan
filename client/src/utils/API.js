@@ -18,12 +18,10 @@ export default {
   },
 
   createRoom: function (roomData) {
-    console.log(roomData);
     return axios.post("/api/rooms/create", roomData);
   },
 
   joinRoom: function (roomData) {
-    console.log(roomData);
     return axios.post("/api/rooms/join", roomData);
   }
 

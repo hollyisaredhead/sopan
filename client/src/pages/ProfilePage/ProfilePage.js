@@ -11,6 +11,7 @@ import {
 } from "@material-ui/core";
 import API from '../../utils/API';
 import auth0Client from "../../utils/Auth";
+import { useHistory } from 'react-router-dom';
 
 
 const useStyles = makeStyles((theme) => ({
@@ -71,6 +72,7 @@ const useStyles = makeStyles((theme) => ({
 
 export default function CenteredGrid() {
     const classes = useStyles();
+    const history = useHistory();
 
     const [username, setUsername] = useState();
     const [avatar, setAvatar] = useState();
@@ -92,10 +94,13 @@ export default function CenteredGrid() {
 
     const updateUsername = () => {
         let newUsernameDiv = document.getElementById("new-username");
-        API.updateUser(auth0Client.getProfile().email, { nickname: newUsernameDiv.value })
-            .then(refreshUser)
-            .then(() => { window.location.href = "/viewingroom" })
-            .catch(err => console.log(err));
+        if (newUsernameDiv.value != "") {
+            API.updateUser(auth0Client.getProfile().email, { nickname: newUsernameDiv.value })
+                .then(refreshUser)
+                .then(() => { history.goBack() })
+                .catch(err => console.log(err));
+        }
+
     }
 
     return (

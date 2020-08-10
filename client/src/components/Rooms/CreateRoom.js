@@ -46,7 +46,14 @@ export default function FormDialog(props) {
                         state: { room: createName.value }
                     });
                 })
-                .catch(err => console.log(err));
+                .catch(err => {
+                    console.log(err)
+
+                    // ===========================================================================================
+                    // THIS ERROR WILL BE THROWN MOST LIKELY WHEN THE ROOM NAME HAS ALREADY BEEN TAKEN
+                    // Sample message to display to user: "Room name is either invalid or has already been taken"
+                    // ===========================================================================================
+                });
         }
 
     }

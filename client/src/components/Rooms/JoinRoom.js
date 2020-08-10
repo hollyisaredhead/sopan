@@ -43,13 +43,32 @@ export default function FormDialog() {
                             pathname: "/viewingroom/" + joinName.value,
                             state: { room: joinName.value }
                         });
+                        setOpen(false);
                     }
-                    else
-                        console.log("incorrect room information")
+                    else {
+                        console.log(result.data)
+                        // ====================================================================================================================
+                        // result.data HERE WILL EITHER BE "incorrect password" OR "room not found" DEPENDING ON WHETHER THE ROOM EXISTS OR NOT
+                        // ====================================================================================================================
+                        if (result.data === "room not found") {
+                            //====================================================================================
+                            // create error message to display to user here for the room user entered not existing
+                            //====================================================================================
+                        }
+                        else if (result.data === "incorrect password") {
+                            //==============================================================================
+                            // create error message to display to user here for an incorrect password entry
+                            //==============================================================================
+                        }
+                        else {
+                            console.log("unknown error");
+                        }
+                    }
+
                 })
                 .catch(err => console.log(err));
 
-            setOpen(false);
+
 
             // window.location = "/viewingroom/" + joinName.value;
         }

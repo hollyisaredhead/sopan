@@ -58,7 +58,7 @@ const useStyles = makeStyles((theme) => ({
     },
 }));
 
-export default function CenteredGrid() {
+export default function CenteredGrid(props) {
     const classes = useStyles();
 
     return (
@@ -106,7 +106,7 @@ export default function CenteredGrid() {
                                     <Grid item xs={3}>
                                         <Button className={classes.btn}>
                                             {/* <AddToQueueIcon fontSize="large" /> */}
-                                            <CreateRoom />
+                                            <CreateRoom room={props.room} setRoom={props.setRoom} />
                                         </Button>
                                     </Grid>
                                     <Grid item xs={9}>
@@ -136,7 +136,7 @@ export default function CenteredGrid() {
                                     <Grid item xs={3}>
                                         <Button className={classes.btn}>
                                             {/* <ExitToAppIcon fontSize="large" /> */}
-                                            <JoinRoom />
+                                            <JoinRoom room={props.room} setRoom={props.setRoom} />
                                         </Button>
                                     </Grid>
                                     <Grid item xs={9}>

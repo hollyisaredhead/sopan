@@ -16,21 +16,26 @@ module.exports = (io) => {
             io.emit('update users', currentUsers);
         });
 
-        socket.on('chat message', function (msg, user) {
-            io.emit('chat message', msg, user);
+        socket.on("join room", function (room) {
+            socket.join(room);
         });
 
-        socket.on('video', function (link) {
+        socket.on('chat message', function (msg, user, room) {
+            io.to(room).emit('chat message', msg, user);
+        });
+
+        socket.on('video', function (link, room) {
             console.log("Changing video to", link)
-            io.emit('video', link);
+            io.to(room).emit('video', link);
         });
 
-        socket.on('new user', function (img, name, email) {
+        socket.on('new user', function (img, name, email, room) {
             let newUser = {
                 _id: socket.id,
                 avatar: img,
                 name: name,
-                email: email
+                email: email,
+                room: room
             };
 
             currentUsers.push(newUser);

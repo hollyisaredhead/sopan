@@ -16,6 +16,7 @@ import { createMuiTheme, ThemeProvider } from "@material-ui/core";
 
 export default () => {
   const [user, setUser] = useState({});
+  const [room, setRoom] = useState('NONE');
 
   //hook for light vs dark mode
   const [darkMode, setDarkMode] = useState(true);
@@ -179,9 +180,9 @@ export default () => {
             <Route exact path={["/", "/login"]}><LogIn /></Route>
             <Route exact path='/callback' component={Callback} />
             {/* <Route exact path={["/homepage"]}><Homepage /></Route> */}
-            <SecuredRoute exact path={["/homepage"]} checkingSession={checkingSession} component={Homepage}></SecuredRoute>
-            <SecuredRoute exact path={["/viewingroom"]} checkingSession={checkingSession} component={ViewingRoom}></SecuredRoute>
-            <SecuredRoute exact path={["/profile"]} checkingSession={checkingSession} component={ProfilePage}></SecuredRoute>
+            <SecuredRoute exact path={["/homepage"]} checkingSession={checkingSession} room={room} component={Homepage}></SecuredRoute>
+            <SecuredRoute path={["/viewingroom"]} checkingSession={checkingSession} room={room} setRoom={setRoom} component={ViewingRoom}></SecuredRoute>
+            <SecuredRoute exact path={["/profile"]} checkingSession={checkingSession} room={room} component={ProfilePage}></SecuredRoute>
           </Switch>
         </div>
       </ThemeProvider>
